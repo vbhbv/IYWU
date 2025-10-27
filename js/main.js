@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const focusModeToggle = document.getElementById('focus-mode-toggle');
     
-    // عناصر التنقل (V5)
+    // عناصر التنقل 
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
     const fullMenu = document.getElementById('full-menu');
 
-    // عناصر Typewriter (V8)
+    // عناصر Typewriter 
     const typewriterElements = document.querySelectorAll('.handwritten-animation');
 
     // =======================================================
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                    // تفعيل زر التركيز بعد التحميل (V1)
                     if (focusModeToggle) focusModeToggle.classList.remove('hidden'); 
                 }, 800);
             }
@@ -40,26 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. وظائف الوضع الداكن (Dark Mode)
     // =======================================================
     
-    // التحقق من حالة الوضع الداكن المخزنة
     const isDarkMode = localStorage.getItem('darkMode') === 'true';
     if (isDarkMode) {
         body.classList.add('dark-mode');
     }
 
     if (darkModeToggle) {
-        // تعيين الأيقونة الابتدائية
         const initialIcon = darkModeToggle.querySelector('i');
         if (initialIcon) {
             initialIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // تبديل الوضع الداكن
         darkModeToggle.addEventListener('click', () => {
-            // newMode يكون 'false' إذا تم التبديل إلى الوضع الفاتح
             const newMode = !body.classList.toggle('dark-mode'); 
             localStorage.setItem('darkMode', newMode);
             
-            // تحديث أيقونة الزر
             const icon = darkModeToggle.querySelector('i');
             if (icon) {
                  icon.className = newMode ? 'fas fa-sun' : 'fas fa-moon';
@@ -83,20 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =======================================================
-    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) (V9: استخدام translate3d)
+    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) - مؤكد العمل
     // =======================================================
     if (hamburgerBtn && fullMenu && closeMenuBtn) {
+        // فتح القائمة
         hamburgerBtn.addEventListener('click', () => {
-            // فتح القائمة
             fullMenu.style.transform = 'translate3d(0, 0, 0)';
         });
 
+        // إغلاق القائمة
         closeMenuBtn.addEventListener('click', () => {
-            // إغلاق القائمة
             fullMenu.style.transform = 'translate3d(100%, 0, 0)';
         });
         
-        // إغلاق القائمة عند النقر على رابط
+        // إغلاق القائمة عند النقر على رابط داخلي
         fullMenu.querySelectorAll('a').forEach(link => {
              link.addEventListener('click', () => {
                  fullMenu.style.transform = 'translate3d(100%, 0, 0)';
@@ -124,9 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
                     i++;
-                    setTimeout(type, 70); // سرعة الكتابة 70ms
+                    setTimeout(type, 70); 
                 } else {
-                    // إيقاف مؤشر الكتابة بعد الانتهاء
                     element.style.borderRight = 'none';
                     element.style.animation = 'none';
                 }
@@ -137,12 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function initTypewriter() {
         typewriterElements.forEach((el, index) => {
-            // تخزين النص الأصلي في data-text
             el.setAttribute('data-text', el.textContent.trim());
-            // إخفاء النص مبدئياً
             el.textContent = '';
             
-            // بدء الكتابة مع تأخير تدريجي
             startTypewriterEffect(el, index * 500 + 1000); 
         });
     }
