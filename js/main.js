@@ -77,23 +77,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =======================================================
-    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) - مؤكد العمل
+    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) - تم الإصلاح
     // =======================================================
     if (hamburgerBtn && fullMenu && closeMenuBtn) {
-        // فتح القائمة
+        
+        // فتح القائمة: إضافة الكلاس 'active'
         hamburgerBtn.addEventListener('click', () => {
-            fullMenu.style.transform = 'translate3d(0, 0, 0)';
+            fullMenu.classList.add('active'); 
         });
 
-        // إغلاق القائمة
+        // إغلاق القائمة: إزالة الكلاس 'active'
         closeMenuBtn.addEventListener('click', () => {
-            fullMenu.style.transform = 'translate3d(100%, 0, 0)';
+            fullMenu.classList.remove('active'); 
         });
         
         // إغلاق القائمة عند النقر على رابط داخلي
         fullMenu.querySelectorAll('a').forEach(link => {
              link.addEventListener('click', () => {
-                 fullMenu.style.transform = 'translate3d(100%, 0, 0)';
+                 fullMenu.classList.remove('active'); 
              });
         });
     }
@@ -109,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = element.getAttribute('data-text'); 
         element.textContent = ''; 
         
+        // إضافة مؤشر الكتابة الوامض عبر CSS (يجب أن يكون محددًا في ملف CSS أو الـ <style> tag)
         element.style.borderRight = '2px solid var(--color-ink-dark, #2C3E50)'; 
         element.style.animation = 'blinking-cursor 0.75s step-end infinite';
         
