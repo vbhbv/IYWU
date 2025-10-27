@@ -1,63 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =======================================================
-    // 1. تحميل البيانات وتشغيل الوظائف الرئيسية
+    // 1. تحميل البيانات والوظائف الأساسية
     // =======================================================
     let membersData = { total_members: 0, robot_dialogues: {} };
     
-    // محاولة جلب البيانات من ملف JSON
+    // محاولة جلب البيانات (افتراض أن الملف موجود في مسار 'data/members.json')
     fetch('data/members.json')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to load members.json');
-            }
+            if (!response.ok) throw new Error('Failed to load members.json');
             return response.json();
         })
         .then(data => {
             membersData = data;
-            
-            // تشغيل الوظائف التي تعتمد على البيانات
             updateMemberCount(membersData.total_members);
             initWarraq(membersData.robot_dialogues);
         })
         .catch(error => {
             console.error("Error fetching data:", error);
-            // تشغيل الروبوت برسالة خطأ إذا فشل التحميل
-            initWarraq({ welcome: "عذراً أيها القارئ النبيل، تواجه محابرنا عطلاً فنياً مؤقتاً في جلب البيانات." });
+            // بيانات افتراضية للعمل إذا فشل الجلب
+            updateMemberCount(200); 
+            initWarraq({ welcome: "أهلاً بك أيها القارئ، الموقع يعمل بشكل كامل، لكن بيانات الأعضاء مؤقتة حالياً." });
         });
         
-    // تشغيل وظيفة ظهور العناصر (لا تعتمد على البيانات)
+    // تشغيل وظيفة ظهور العناصر
     initScrollReveal();
-
+    
     // =======================================================
     // 2. تحديث عدد الأعضاء
     // =======================================================
     function updateMemberCount(count) {
         const countDisplay = document.getElementById('member-count-display');
         if (countDisplay) {
-            countDisplay.innerHTML = `نحن <span class="highlight">${count}</span> كاتباً وأديباً، نحمل محبرة العراق إلى المستقبل.`;
+            countDisplay.innerHTML = `<i class="fas fa-quote-right"></i> نحن نجمع أكثر من <span style="color: var(--color-accent);">${count}</span> قلمًا شابًا.`;
         }
     }
 
     // =======================================================
-    // 3. إدارة الوضع الليلي (إضاءة المصباح)
+    // 3. إدارة الوضع الليلي (Dark Mode)
     // =======================================================
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const savedMode = localStorage.getItem('darkMode');
 
     if (savedMode === 'true') {
         document.body.classList.add('dark-mode');
+        // تغيير أيقونة القمر إلى شمس في الوضع الليلي
+        darkModeToggle.querySelector('i').className = 'fas fa-sun';
     }
 
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark);
+            // تبديل الأيقونة
+            darkModeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
         });
     }
 
     // =======================================================
-    // 4. الروبوت "الوراق" (أبو حيان) - التفاعل السياقي
+    // 4. الروبوت "الوراق" (المساعد التفاعلي)
     // =======================================================
     const warraq = document.getElementById('the-warraq');
     const dialogueBox = warraq ? warraq.querySelector('.robot-dialogue-box') : null;
@@ -66,67 +67,58 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!warraq || !dialogueBox) return;
 
         let currentDialogue;
-        
-        // أ. المرشد السياحي الأدبي (Contextual Guide)
         switch (document.body.id) {
-            case 'homepage':
-                currentDialogue = dialogues.welcome || "أهلاً بك أيها القارئ النبيل، في محراب المحبرة الرقمية.";
-                break;
-            case 'join-page':
-                currentDialogue = "لا تتردد في مد يدك، سأرشدك إلى ميثاق الاتحاد وشروط العضوية.";
-                break;
-            case 'latest-members-page':
-                 currentDialogue = "انظر إلى الأقلام الجديدة! لعل أحدهم سيكون نجم المستقبل.";
-                break;
-            default:
-                currentDialogue = dialogues.welcome || "في رحاب الأدب، لا تضل البوصلة.";
+            case 'homepage': currentDialogue = dialogues.welcome || "أهلاً، سأكون دليلك هنا. اكتشفوا أصواتنا الجديدة."; break;
+            case 'join-page': currentDialogue = "أهلاً بالكاتب الطموح، تفضل بقراءة ميثاق الانضمام بالتفصيل."; break;
+            default: currentDialogue = "أتمنى لكم تجربة قراءة ممتعة وعميقة.";
         }
         
-        // ظهور الروبوت والترحيب بعد فترة
         setTimeout(() => {
             warraq.style.opacity = 1;
             dialogueBox.textContent = currentDialogue;
-        }, 2000); 
+        }, 1500); 
 
-        // إخفاء الرسالة عند النقر على الروبوت
         warraq.addEventListener('click', () => {
-            dialogueBox.textContent = "أتمنى لك رحلة ممتعة في بحور الأدب!";
-            setTimeout(() => {
-                dialogueBox.textContent = '';
-            }, 5000);
+            dialogueBox.textContent = "تابعني! أنا موجود للإجابة على استفساراتك المنهجية.";
+            setTimeout(() => { dialogueBox.textContent = ''; }, 5000);
         });
         
-        // تشغيل مراقب التمرير للتحليل
-        initScrollMonitor(dialogues);
+        initScrollMonitor(); // تشغيل مراقبة التمرير
     }
     
     // =======================================================
-    // 5. إدارة قائمة الهامبرغر (الريشة)
+    // 5. إدارة القائمة الجانبية (Sidebar)
     // =======================================================
     const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
     const fullMenu = document.getElementById('full-menu');
 
-    if (hamburgerBtn && fullMenu) {
+    if (hamburgerBtn && fullMenu && closeMenuBtn) {
+        // فتح القائمة
         hamburgerBtn.addEventListener('click', () => {
-            fullMenu.classList.toggle('visible');
-            hamburgerBtn.classList.toggle('active');
-            // منع التمرير عند فتح القائمة
-            document.body.style.overflow = fullMenu.classList.contains('visible') ? 'hidden' : 'auto';
+            fullMenu.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+        // إغلاق القائمة
+        closeMenuBtn.addEventListener('click', () => {
+            fullMenu.classList.remove('visible');
+            document.body.style.overflow = 'auto';
+        });
+        // إغلاق عند النقر على رابط
+        fullMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                fullMenu.classList.remove('visible');
+                document.body.style.overflow = 'auto';
+            });
         });
     }
 
     // =======================================================
-    // 6. تأثير الانزلاق الزمني (Time Scroll Reveal)
+    // 6. تأثير الظهور عند التمرير (Scroll Reveal)
     // =======================================================
     function initScrollReveal() {
-        const revealElements = document.querySelectorAll('.section-scroll-reveal');
+        const revealElements = document.querySelectorAll('.reveal-element');
         
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -134,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { rootMargin: '0px', threshold: 0.1 });
 
         revealElements.forEach(el => {
             observer.observe(el);
@@ -148,17 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastScrollY = window.scrollY;
     let scrollTimeout;
 
-    function initScrollMonitor(dialogues) {
+    function initScrollMonitor() {
         if (!focusModeToggle) return;
 
         focusModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('focus-mode-active');
-            const status = document.body.classList.contains('focus-mode-active') ? "تفعيل وضع التركيز." : "إلغاء وضع التركيز.";
+            const isActive = document.body.classList.toggle('focus-mode-active');
+            const status = isActive ? "تفعيل وضع التركيز، قراءة هادئة." : "إلغاء وضع التركيز.";
             if (dialogueBox) dialogueBox.textContent = status;
         });
 
         window.addEventListener('scroll', () => {
-            // تحديث إظهار زر التركيز
+            // إظهار زر التركيز بعد التمرير قليلاً
             if (window.scrollY > 400) {
                  focusModeToggle.classList.remove('hidden');
             } else {
@@ -167,25 +159,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // منطق الروبوت لتحليل سرعة التمرير
             clearTimeout(scrollTimeout);
-            
             scrollTimeout = setTimeout(() => {
                 const currentScrollY = window.scrollY;
                 const scrollDelta = Math.abs(currentScrollY - lastScrollY);
                 lastScrollY = currentScrollY;
                 
-                // إذا كان التمرير سريع جداً
-                if (scrollDelta > 1000 && warraq.style.opacity === '1') {
+                if (scrollDelta > 800 && warraq.style.opacity === '1') {
                      if (dialogueBox) {
-                         dialogueBox.textContent = "مهلاً أيها النبيل، ألم تقع عيناك على جمال العبارة؟"
-                         setTimeout(() => { dialogueBox.textContent = ''; }, 5000);
+                         dialogueBox.textContent = "تريث أيها القارئ، لا تفوت جمال الفكرة!";
+                         setTimeout(() => { dialogueBox.textContent = ''; }, 4000);
                      }
                 }
-            }, 250);
+            }, 300);
         });
     }
 
     // =======================================================
-    // 8. إخفاء شاشة التحميل (بوابة الرافدين)
+    // 8. إخفاء شاشة التحميل
     // =======================================================
     const loadingScreen = document.getElementById('loading-screen');
     window.addEventListener('load', () => {
@@ -196,8 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     loadingScreen.style.display = 'none';
                 }, 1000); 
             }
-        }, 1500); 
+        }, 800); // وقت عرض الشاشة أقصر للسرعة
     });
-
 });
-                            
