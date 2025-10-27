@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتحاد الأدباء والكتّاب العراقيين الشباب - المحبرة الرقمية</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="homepage" class="parchment-background">
+
+    <div id="loading-screen">
+        <div class="ink-pen-animation"></div> </div>
+
+    <div id="the-warraq" class="warraq-icon">
+        <div class="robot-dialogue-box">
+            </div>
+    </div>
+
+    <header>
+        <div class="logo">اتحاد الأدباء والكتّاب</div>
+        <div class="controls">
+            <button id="hamburger-btn" class="feather-icon" aria-label="قائمة التنقل"></button>
+            <button id="dark-mode-toggle" class="lamp-icon" aria-label="وضع القراءة الليلي"></button>
+        </div>
+    </header>
+
+    <nav id="full-menu" class="hidden">
+        <a href="magazine.html">مجلة الرافد</a>
+        <a href="latest_members.html">آخر المنضمين (الأقلام الشابة)</a>
+        <a href="join_rules.html">ميثاق الانضمام</a>
+        <a href="#activities">برامجنا التدريبية</a>
+    </nav>
+
+    <main>
+        <section id="hero" class="illuminated-border section-scroll-reveal">
+            <h1>أصالة الكلمة، وفضاء الشباب</h1>
+            <p id="member-count-display" class="intro-text">
+                نحن الأقلام الجديدة التي تحمل محبرة العراق إلى المستقبل.
+            </p>
+            <a href="latest_members.html" class="button primary-button">اكتشف آخر المنضمين</a>
+        </section>
+
+        <section id="vision" class="section-scroll-reveal">
+            <h2>رؤيتنا: النافذة نحو العالمية</h2>
+            <div class="illuminated-border">
+                <p>أن يكون الاتحاد هو المظلة الثقافية الرائدة والحاضنة الإبداعية الأولى لجيل الشباب من الأدباء والكتّاب العراقيين، ونافذتهم نحو العالمية.</p>
+                <a href="join_rules.html" class="link-with-ink-effect">اقرأ ميثاقنا كاملاً</a>
+            </div>
+        </section>
+
+        <section id="iraqi-map" class="section-scroll-reveal">
+            <h2>خريطة الرافدين الأدبية: أصوات من كل مدينة</h2>
+            <p>انقر على مدينتك لترى أصوات الأقلام الشابة المنضمة إلينا.</p>
+            <div id="interactive-map-container" style="height: 450px; background-color: var(--color-paper);">
+                </div>
+        </section>
+
+        <section id="weekly-pioneers" class="section-scroll-reveal illuminated-border">
+            <h2>✨ خلاصة الرواد الأسبوعية</h2>
+            <p class="intro-text">أكثر الأعمال تفاعلاً وصدىً لهذا الأسبوع في مجلة "الرافد".</p>
+            <div id="pioneers-list" class="flex-container">
+                <p>جاري تحليل الصدى... يرجى زيارة مجلة الرافد للمزيد.</p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <button id="focus-mode-toggle" class="focus-mode-btn hidden" aria-label="وضع التركيز"></button>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
