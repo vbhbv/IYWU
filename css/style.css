@@ -1,0 +1,369 @@
+/*======================================================================*/
+/* CSS لملف المحبرة الرقمية (Style.css) - اتحاد الأدباء والكتّاب        */
+/*======================================================================*/
+
+/* 1. متغيرات الألوان والخطوط الأساسية - لتسهيل الوضع الليلي */
+:root {
+    /* ألوان الوضع النهاري (المخطوطة) */
+    --color-paper: #F8F4E6;        /* ورق كريمي */
+    --color-ink-dark: #3A2F2B;     /* لون الحبر الأساسي */
+    --color-ink-light: #5B4F47;
+    --color-gold: #B8860B;         /* لون ذهبي للأصالة */
+    --color-accent: #8B4513;       /* لون بني ساطع */
+    --font-serif: 'Amiri', serif;  /* خط عربي تقليدي للعنوان والنص */
+    --font-sans: 'Tajawal', sans-serif; /* خط حديث للقوائم والأزرار */
+}
+
+/* 2. الوضع الليلي (إضاءة المصباح) */
+.dark-mode {
+    --color-paper: #1A1A1A;
+    --color-ink-dark: #E6E6E6;
+    --color-ink-light: #BDBDBD;
+    --color-gold: #FFD700;
+    --color-accent: #AA6C39;
+}
+
+/*======================================================================*/
+/* 3. التصميم العام والخلفية الطبقية (21)                  */
+/*======================================================================*/
+body {
+    background-color: var(--color-paper);
+    color: var(--color-ink-dark);
+    font-family: var(--font-serif);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s, color 0.5s;
+    /* 21. الطبقة 1: ورق البردي الخافت (يجب أن تكون الصورة موجودة) */
+    background-image: url('../assets/images/parchment.jpg'); 
+    background-size: cover;
+    background-attachment: fixed; /* لتأثير Parallax خفيف */
+}
+
+/* 21. الطبقة 2: بقع الحبر العشوائية عند الحواف */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* افتراض وجود صورة لبقع حبر شفافة */
+    background-image: url('../assets/images/ink-splatter.png');
+    background-size: cover;
+    opacity: 0.05;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    min-height: 70vh; /* لضمان وجود مسافة للتذييل */
+}
+
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: bold;
+    color: var(--color-ink-dark);
+}
+
+.intro-text {
+    font-size: 1.1em;
+    font-style: italic;
+    color: var(--color-ink-light);
+}
+
+/*======================================================================*/
+/* 4. رأس الصفحة وأزرار التحكم                       */
+/*======================================================================*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 1px solid var(--color-ink-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-paper);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--color-ink-dark);
+}
+
+.controls button {
+    margin-left: 15px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--color-ink-dark);
+    transition: color 0.3s, transform 0.2s;
+}
+
+.controls button:hover {
+    color: var(--color-gold);
+    transform: scale(1.1);
+}
+
+/* 2. زر الليل (المصباح) و 2. زر الهامبرغر (الريشة) - رموز وهمية */
+.lamp-icon::before { content: '💡'; } 
+.feather-icon::before { content: '🖋'; } 
+
+/* قائمة الهامبرغر المبتكرة (2) */
+#full-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--color-ink-dark), 0.95);
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-out;
+    transform: translateY(-100%);
+}
+
+#full-menu.visible {
+    transform: translateY(0);
+}
+
+#full-menu a {
+    color: var(--color-paper);
+    font-size: 40px;
+    padding: 15px 0;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    transition: color 0.3s;
+}
+
+#full-menu a:hover {
+    color: var(--color-gold);
+}
+
+/*======================================================================*/
+/* 5. تأثيرات المخطوطة والحبر (22, 23)                  */
+/*======================================================================*/
+
+/* 23. إطارات النصوص المخطوطة (Illuminated Borders) */
+.illuminated-border {
+    padding: 40px;
+    margin: 40px 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 5px double var(--color-gold);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+/* 22. تأثير الحبر على الروابط (Link with Ink Effect) */
+a:not(.button):not(.logo) {
+    color: var(--color-ink-dark);
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 3px;
+    transition: color 0.3s;
+}
+
+a:not(.button):not(.logo)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%) scaleX(0); 
+    height: 3px;
+    width: 100%;
+    background-color: var(--color-ink-dark); 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+a:not(.button):not(.logo):hover::after {
+    transform: translateX(-50%) scaleX(1); 
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--color-ink-dark);
+    color: var(--color-paper) !important;
+    text-decoration: none;
+    border: 2px solid var(--color-gold);
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: var(--font-sans);
+    font-weight: bold;
+}
+.button:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/*======================================================================*/
+/* 6. الروبوت "الوراق" و وضع التركيز (25)                    */
+/*======================================================================*/
+#the-warraq {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 900;
+    opacity: 0;
+    transition: opacity 1s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.warraq-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-ink-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-gold);
+    cursor: pointer;
+    position: relative;
+}
+
+.warraq-icon::after {
+    content: 'قلم'; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-paper);
+    animation: writing-pulse 2s infinite; 
+}
+
+.robot-dialogue-box {
+    background-color: var(--color-ink-dark);
+    color: var(--color-paper);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 250px;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 25. الرؤية الهادئة (Focus Mode) */
+#focus-mode-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 950;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-ink-dark);
+    color: var(--color-paper);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s;
+}
+
+#focus-mode-toggle::before { content: '🔍'; } 
+
+#focus-mode-toggle.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 9. تأثير التعتيم لوضع التركيز */
+.focus-mode-active #the-warraq,
+.focus-mode-active header,
+.focus-mode-active footer {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.focus-mode-active main {
+    max-width: 900px;
+    margin: 40px auto;
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+
+/*======================================================================*/
+/* 7. تأثير الانزلاق الزمني (Time Scroll Reveal) (26)                  */
+/*======================================================================*/
+.section-scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.320, 1), transform 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.section-scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/*======================================================================*/
+/* 8. أنماط التذييل الجديدة (Footer Styles)                             */
+/*======================================================================*/
+#main-footer {
+    padding: 40px 20px;
+    background-color: rgba(var(--color-ink-light), 0.05); /* شفافية بسيطة */
+    border-top: 5px solid var(--color-gold); /* خط ذهبي فاخر */
+    margin-top: 50px;
+    /* تطبيق نفس تأثير الظهور عند التمرير */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+}
+
+#main-footer h3 {
+    color: var(--color-ink-dark);
+    font-size: 20px;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-family: var(--font-sans);
+}
+
+#main-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+#main-footer ul li {
+    margin-bottom: 8px;
+}
+
+.contact-info .icon {
+    margin-left: 5px;
+    color: var(--color-gold);
+}
+
+/* لتنظيم المساحات في الأجهزة الصغيرة */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+    .footer-content {
+        flex-direction: column;
+    }
+    .footer-section {
+        min-width: 100%;
+        margin: 15px 0;
+    }
+}
