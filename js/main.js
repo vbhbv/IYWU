@@ -17,10 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const typewriterElements = document.querySelectorAll('.handwritten-animation');
 
     // =======================================================
-    // 2. وظائف التحميل الأولي (Loading & Initial State) (V2, V3)
+    // 2. وظائف التحميل الأولي (Loading & Initial State)
     // =======================================================
 
-    // إخفاء شاشة التحميل
     window.addEventListener('load', () => {
         setTimeout(() => {
             if (loadingScreen) {
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =======================================================
-    // 3. وظائف الوضع الداكن (Dark Mode) (V2)
+    // 3. وظائف الوضع الداكن (Dark Mode)
     // =======================================================
     
     // التحقق من حالة الوضع الداكن المخزنة
@@ -47,11 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.add('dark-mode');
     }
 
-    // تبديل الوضع الداكن
     if (darkModeToggle) {
+        // تعيين الأيقونة الابتدائية
+        const initialIcon = darkModeToggle.querySelector('i');
+        if (initialIcon) {
+            initialIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // تبديل الوضع الداكن
         darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const newMode = body.classList.contains('dark-mode');
+            // newMode يكون 'false' إذا تم التبديل إلى الوضع الفاتح
+            const newMode = !body.classList.toggle('dark-mode'); 
             localStorage.setItem('darkMode', newMode);
             
             // تحديث أيقونة الزر
@@ -60,16 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
                  icon.className = newMode ? 'fas fa-sun' : 'fas fa-moon';
             }
         });
-        
-        // تعيين الأيقونة الابتدائية
-        const initialIcon = darkModeToggle.querySelector('i');
-        if (initialIcon) {
-            initialIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
-        }
     }
 
     // =======================================================
-    // 4. وظيفة وضع التركيز (Focus Mode) (V1)
+    // 4. وظيفة وضع التركيز (Focus Mode)
     // =======================================================
     if (focusModeToggle) {
         focusModeToggle.addEventListener('click', () => {
@@ -84,36 +83,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =======================================================
-    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) (V5)
+    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) (V9: استخدام translate3d)
     // =======================================================
     if (hamburgerBtn && fullMenu && closeMenuBtn) {
         hamburgerBtn.addEventListener('click', () => {
-            fullMenu.style.transform = 'translateX(0)';
+            // فتح القائمة
+            fullMenu.style.transform = 'translate3d(0, 0, 0)';
         });
 
         closeMenuBtn.addEventListener('click', () => {
-            fullMenu.style.transform = 'translateX(100%)';
+            // إغلاق القائمة
+            fullMenu.style.transform = 'translate3d(100%, 0, 0)';
         });
         
         // إغلاق القائمة عند النقر على رابط
         fullMenu.querySelectorAll('a').forEach(link => {
              link.addEventListener('click', () => {
-                 fullMenu.style.transform = 'translateX(100%)';
+                 fullMenu.style.transform = 'translate3d(100%, 0, 0)';
              });
         });
     }
 
     // =======================================================
-    // 6. وظيفة الكتابة اليدوية المتحركة (Typewriter Effect) (V8)
+    // 6. وظيفة الكتابة اليدوية المتحركة (Typewriter Effect)
     // =======================================================
 
     function startTypewriterEffect(element, delay = 0) {
         if (!element) return;
         
-        // عرض العنصر لبدء الكتابة
         element.style.visibility = 'visible'; 
-        
-        const text = element.getAttribute('data-text'); // استخدام data-text لتخزين النص الأصلي
+        const text = element.getAttribute('data-text'); 
         element.textContent = ''; 
         
         element.style.borderRight = '2px solid var(--color-ink-dark, #2C3E50)'; 
@@ -138,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function initTypewriter() {
         typewriterElements.forEach((el, index) => {
-            // تخزين النص الأصلي قبل البدء
+            // تخزين النص الأصلي في data-text
             el.setAttribute('data-text', el.textContent.trim());
             // إخفاء النص مبدئياً
             el.textContent = '';
@@ -149,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // =======================================================
-    // 7. مراقبة العناصر عند التمرير (Reveal Elements) (V2)
+    // 7. مراقبة العناصر عند التمرير (Reveal Elements)
     // =======================================================
     
     const revealElements = document.querySelectorAll('.reveal-element');
@@ -159,14 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
-            // إزالة else لتمكين التأثير عند كل ظهور (للتصميم الورقي قد يكون أفضل)
         });
     }, {
-        threshold: 0.1 // تبدأ بالظهور عندما يكون 10% من العنصر مرئيًا
+        threshold: 0.1
     });
 
     revealElements.forEach(element => {
         observer.observe(element);
     });
-
 });
