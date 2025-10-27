@@ -1,143 +1,167 @@
 /*======================================================================*/
-/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة"      */
+/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V8"  */
+/* دمج شامل لجميع التحسينات من V1 حتى V8                              */
 /*======================================================================*/
 
-/* 1. متغيرات الألوان والخطوط الأساسية */
+/* 1. متغيرات الألوان والخطوط الأساسية (V8: ورق عتيق وألوان حبر غنية) */
 :root {
-    /* ألوان دافئة تشبه الورق والحبر */
-    --color-paper: #FFF8E1;            /* لون ورقة عتيقة */
-    --color-ink-dark: #3E2723;         /* لون حبر بني غامق */
-    --color-ink-light: #5D4037;        /* لون حبر فاتح للحدود */
-    --color-accent: #9E9D24;           /* لون أخضر زيتوني (لمسة قديمة) */
-    --color-highlight: #FFAB91;        /* تظليل وردي ناعم */
+    /* لون ورقة عتيقة مصفرة قليلاً */
+    --color-paper: #FFFDF5;            
+    --color-ink-dark: #2C3E50;         /* كحلي عميق/حبر داكن */
+    --color-ink-light: #7F8C8D;        
+    --color-accent: #8E44AD;           /* لون بنفسجي داكن للحبر/التأكيد (كلاسيكي) */
+    --color-highlight: #F39C12;        /* ذهبي/برونزي للتأكيد */
     
-    /* تفعيل الخطوط اليدوية */
     --font-heading: 'Reem Kufi Fun', cursive, sans-serif;
     --font-body: 'Vazirmatn', sans-serif;
+    --paper-line-height: 38px; /* ارتفاع سطر أكبر لراحة القراءة (V7) */
+    --border-thickness: 3px;
+    --shadow-depth: 10px; /* عمق الظل الرئيسي (V7) */
 }
 
-/* 2. الوضع الليلي (Dark Mode - حبر على ورق أسود) */
+/* 2. الوضع الليلي (Dark Mode) (V2, V4) */
 .dark-mode {
-    --color-paper: #212121;
-    --color-ink-dark: #FBE9E7;
-    --color-ink-light: #FFCCBC;
-    --color-accent: #FFD700;
-    --color-highlight: #795548;
-    --color-shadow: rgba(255, 255, 255, 0.05);
+    --color-paper: #1B2631;
+    --color-ink-dark: #ECF0F1;
+    --color-ink-light: #BDC3C7;
+    --color-accent: #9B59B6;
+    --color-highlight: #F1C40F;
 }
 
 /*======================================================================*/
-/* 3. الإعدادات العامة وتأثير الورقة                                     */
+/* 3. الإعدادات العامة وتأثير الورقة الخلفية (V7, V8)                   */
 /*======================================================================*/
-* { box-sizing: border-box; }
+* { 
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+#page-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+#content-wrap {
+    flex-grow: 1;
+}
 
 body {
     background-color: var(--color-paper);
     color: var(--color-ink-dark);
     font-family: var(--font-body); 
-    font-weight: 400;
-    line-height: 1.8; /* تباعد الأسطر لراحة القراءة */
-    margin: 0;
-    padding: 0;
+    line-height: 1.8;
     transition: background-color 0.8s, color 0.8s;
-    /* إعطاء نسيج بسيط للورقة */
-    background-image: repeating-linear-gradient(
-        -45deg,
-        rgba(0, 0, 0, 0.03),
-        rgba(0, 0, 0, 0.03) 1px,
-        transparent 1px,
-        transparent 2px
-    );
+    
+    /* خلفية الورقة (مموجة + مسطرة أفقية وعمودية) - V8 */
+    background-image: 
+        /* طبقة عيوب الورق/الموجات (V8) */
+        radial-gradient(circle at 10% 10%, rgba(0,0,0,0.05) 1%, transparent 1%),
+        radial-gradient(circle at 70% 50%, rgba(0,0,0,0.05) 1%, transparent 1%),
+        /* طبقة الخطوط المسطرة الأفقية (V3) */
+        repeating-linear-gradient(to bottom, var(--color-paper) 0px, var(--color-paper) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) var(--paper-line-height)), 
+        /* طبقة الخطوط المسطرة العمودية (V3, V7) */
+        repeating-linear-gradient(to left, rgba(var(--color-ink-light), 0.05) 0, rgba(var(--color-ink-light), 0.05) 1px, transparent 1px, transparent 200px);
+    
+    background-size: 100% 100%, 100% 100%, 100% var(--paper-line-height), 100% 100%;
+    background-attachment: fixed; /* تثبيت الخلفية لتأثير الورقة (V1) */
 }
 
 .content-wrapper {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 30px 20px;
-    padding-top: 100px; 
-    min-height: 80vh;
+    padding-top: 100px; /* مساحة للـ Header */
+    position: relative;
+    z-index: 10;
+    
+    /* تأثير الشفافية والتمويه لعمق الورقة (V7) */
+    background-color: rgba(255, 255, 255, 0.6); 
+    backdrop-filter: blur(2px); /* تمويه خفيف (V8) */
 }
 
+/* 4. الخطوط وتأثيرات الحبر (Typography & Ink Bleed) (V5, V7) */
 h1, h2, h3 {
     font-family: var(--font-heading);
-    color: var(--color-ink-dark);
-    font-weight: 700; 
 }
 
-/* تأثير التسطير المرسوم يدوياً */
-.drawn-underline {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 5px;
+.ink-bleed-title {
+    filter: url(#ink-bleed); 
+    text-shadow: 2px 2px 0 rgba(44, 62, 80, 0.4); /* ظل أثقل لتحسين الوضوح (V8) */
+    mix-blend-mode: multiply; /* دمج لون الحبر مع الخلفية (V7) */
+    display: inline-block; 
 }
-.drawn-underline::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--color-ink-light);
-    /* فلتر لتأثير الرسم/الشخبطة */
-    filter: url(#rough-filter); 
-    transform: skew(-2deg); /* ميلان بسيط */
+/* إعدادات Typewriter Animation (V8) */
+.handwritten-animation {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--color-ink-dark); /* محاكاة مؤشر الكتابة (V8) */
 }
 
-/* الأيقونات المرسومة (Sketchy Icons) */
-.sketch-icon i {
-    color: var(--color-ink-dark);
-    transition: color 0.3s;
-}
-.sketch-icon:hover i {
-    color: var(--color-accent);
-    filter: drop-shadow(2px 2px 0 var(--color-ink-light)); /* ظل غير منتظم */
-}
-
-/*======================================================================*/
-/* 4. الهيدر والحواف المرسومة                                          */
-/*======================================================================*/
-.main-header {
-    background-color: var(--color-paper);
-    border-bottom: 2px dashed var(--color-ink-light);
-    box-shadow: none; /* إزالة الظل التقليدي */
-    /* ... بقية الأنماط كما هي ... */
-}
-
-/* تأثير الإطار المرسوم يدوياً (غير منتظم) */
+/* 5. الحواف والحدود (Hand-Drawn Borders & Fold Effect) (V3, V7) */
 .hand-drawn-border {
-    border: 3px solid var(--color-ink-light);
-    box-shadow: 5px 5px 0 var(--color-accent), 10px 10px 0 var(--color-ink-dark);
-    transition: box-shadow 0.3s;
-    border-radius: 15px 5px 20px 8px; /* حواف غير منتظمة */
+    border: var(--border-thickness) solid var(--color-ink-dark);
+    /* ظل ثلاثي الأبعاد لعمق الورقة (V7) */
+    box-shadow: var(--shadow-depth) var(--shadow-depth) 0 0 var(--color-ink-light); 
+    transition: box-shadow 0.3s, transform 0.3s;
+    border-radius: 10px 15px 10px 15px; /* شكل مرسوم (V3) */
     padding: 40px;
     margin: 30px 0;
-    background-color: var(--color-card-bg); /* خلفية بيضاء نقية داخل الإطار */
+    background-color: var(--color-paper);
+    filter: url(#rough-filter); 
+    overflow: hidden; 
+    position: relative; /* ضروري للثني */
 }
 .hand-drawn-border:hover {
-    box-shadow: 3px 3px 0 var(--color-accent), 6px 6px 0 var(--color-ink-dark);
+    box-shadow: calc(var(--shadow-depth) - 2px) calc(var(--shadow-depth) - 2px) 0 0 var(--color-ink-light);
+    transform: translateY(-2px); /* حركة خفيفة عند التحويم (V4) */
 }
 
-/*======================================================================*/
-/* 5. الأزرار والحاويات المرسومة (Drawn Buttons & Cards)                */
-/*======================================================================*/
+/* تأثير الثني (Fold Effect) (V7) */
+.paper-fold {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    z-index: 50;
+    filter: url(#rough-filter);
+    opacity: 0.2;
+}
+.top-left {
+    top: 0;
+    left: 0;
+    border-width: 40px 40px 0 0;
+    border-color: var(--color-ink-light) transparent transparent transparent;
+    transform: rotate(90deg);
+}
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-width: 40px 40px 0 0;
+    border-color: var(--color-ink-light) transparent transparent transparent;
+    transform: rotate(-90deg);
+}
+
+
+/* 6. الأزرار والتفاعلات (Buttons & Micro-Interactions) (V3, V8) */
 .btn {
-    border-radius: 5px 15px 5px 10px; /* شكل مرسوم يدويًا */
+    border-radius: 5px 15px 5px 10px;
     border: 2px solid var(--color-ink-dark);
     position: relative;
+    transition: all 0.2s;
+    filter: url(#rough-filter);
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 3px 3px 0 var(--color-ink-dark); /* ظل أثقل للأزرار (V8) */
 }
-
-/* إطار حول الزر يجعله يبدو مرسومًا */
-.drawn-btn::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    border: 1px dashed var(--color-accent);
-    border-radius: 8px 18px 8px 13px;
-    transform: rotate(1deg);
-    z-index: -1;
+.btn:hover {
+    box-shadow: 1px 1px 0 var(--color-ink-dark); 
+    transform: translateY(1px); /* تأثير الضغط (V5) */
 }
 
 .primary-btn {
@@ -148,67 +172,194 @@ h1, h2, h3 {
     background-color: transparent;
     color: var(--color-ink-dark) !important;
 }
-.secondary-btn:hover {
-    background-color: var(--color-highlight);
+/* تأثير الختم الشمعي على زر "ابدأ بالكتابة" (V3, V8) */
+.seal-effect {
+    padding-right: 50px; 
 }
-
-/* Vision Card */
-.vision-card.hand-drawn-effect {
-    border-top: 5px solid var(--color-accent);
-    box-shadow: 3px 3px 0 var(--color-ink-light);
-    border-radius: 10px 0 10px 0;
-    transition: box-shadow 0.3s;
-}
-
-/* منطقة الخريطة (Sketchy Area) */
-.sketchy-area {
-    min-height: 250px;
-    border: 4px dashed var(--color-ink-light);
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: italic;
-    background-color: rgba(var(--color-highlight), 0.1);
-}
-
-/*======================================================================*/
-/* 6. الروبوت "الوراق" (المساعد المرسوم)                                */
-/*======================================================================*/
-
-.warraq-icon {
-    /* (إعدادات الروبوت الأساسية) */
-    background-color: var(--color-accent);
+.seal-effect::after {
+    content: '\f02d'; /* أيقونة كتاب/طابع */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%) rotate(5deg);
+    font-size: 1.4rem; 
+    color: var(--color-accent); 
     border: 3px solid var(--color-ink-dark);
-    box-shadow: 4px 4px 0 var(--color-ink-dark); /* ظل مرسوم */
-    border-radius: 10px 20px 10px 25px; /* شكل مرسوم */
-    /* إزالة الأيقونة التقليدية واستخدام لون حبر */
-    color: var(--color-ink-dark); 
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 2px 2px 0 var(--color-ink-light); 
+    transition: transform 0.3s, opacity 0.3s;
+}
+.btn:hover.seal-effect::after {
+    transform: translateY(-50%) rotate(0deg) scale(1.1);
+    opacity: 0.8;
 }
 
-.robot-dialogue-box {
+/* 7. شريط التنقل العلوي (Header - Hashing/Hanging Edge) (V5, V7) */
+.main-header {
     background-color: var(--color-paper);
-    color: var(--color-ink-dark); 
-    border: 2px solid var(--color-ink-dark);
-    box-shadow: 3px 3px 0 var(--color-ink-dark); 
-    font-family: var(--font-body); /* استخدام خط الجسم ليعطي لمسة حبر */
-    /* إضافة فلتر لتأثير الرسم اليدوي على الفقاعة */
-    filter: drop-shadow(1px 1px 0 var(--color-ink-dark));
+    border-bottom: 2px dashed var(--color-ink-light);
+    /* حدود جانبية للحاشية (V7) */
+    border-left: 2px dashed var(--color-accent);
+    border-right: 2px dashed var(--color-accent);
+    box-shadow: none; 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    filter: url(#rough-filter);
 }
-
-.robot-dialogue-box::before {
-    /* شكل السهم كبقعة حبر */
+.header-nav a {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-ink-dark);
+    text-decoration: none;
+    margin: 0 15px;
+    position: relative;
+    transition: color 0.3s;
+}
+.header-nav a:hover {
+    color: var(--color-accent);
+}
+.header-nav a:hover::after {
     content: '';
     position: absolute;
-    bottom: -15px; 
-    left: 15px; 
-    border-top: 15px solid var(--color-ink-dark); 
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    filter: drop-shadow(1px 1px 0 var(--color-ink-dark));
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent);
+    filter: url(#rough-filter);
+}
+.mobile-only {
+    display: none; 
+}
+/* قائمة الهاتف (V5) */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--color-ink-dark), 0.95);
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* ... (أنماط القائمة الجانبية في الهاتف) ... */
+
+
+/* 8. زر "اكتب الآن" العائم (V8) */
+.write-now-btn {
+    position: fixed;
+    bottom: 30px; 
+    right: 30px; 
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-accent);
+    color: var(--color-paper);
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 4px 4px 0 var(--color-ink-dark);
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    filter: url(#rough-filter);
+}
+.write-now-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0 var(--color-ink-dark);
+}
+.floating-quill {
+    font-size: 1.5rem;
+    margin-left: 10px;
+    transform: rotate(15deg);
+}
+
+/* 9. الشبكات والتذييل (Grid & Footer) (V3, V4, V5) */
+.vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.vision-card.hand-drawn-effect {
+    padding: 25px;
+    border-top: 5px solid var(--color-highlight);
+    box-shadow: 4px 4px 0 var(--color-ink-light);
+    border-radius: 15px 0 15px 0;
+    background-color: var(--color-paper);
+    transition: transform 0.3s, box-shadow 0.3s;
+    filter: url(#rough-filter);
+}
+.vision-card.hand-drawn-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0 var(--color-ink-light);
+}
+
+#main-footer {
+    background-color: var(--color-ink-light);
+    color: var(--color-paper);
+    padding: 40px 20px;
+    margin-top: 50px; 
+    width: 100%;
+    border-top: 3px dashed var(--color-ink-dark);
+    position: relative; /* ضروري للثني السفلي */
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /*======================================================================*/
-/* 7. فلاتر SVG لتأثير الرسم اليدوي (Sketchy Filter - متقدم)             */
+/* 10. استجابة التصميم (Media Queries - Mobile First) (V4, V5, V7, V8) */
 /*======================================================================*/
-/* يتم تضمين هذا الكود داخل ملف HTML في وسم <svg> في البداية */
+@media (max-width: 768px) {
+    /* قائمة التنقل */
+    .header-nav { display: none; }
+    .mobile-only { display: block; }
+    .content-wrapper { padding-top: 70px; }
+    
+    /* إلغاء تأثيرات العمق والورق لتبسيط الجوال */
+    .paper-fold { display: none; }
+    .content-wrapper { background-color: var(--color-paper); backdrop-filter: none; }
+    .hand-drawn-border {
+        box-shadow: 4px 4px 0 0 var(--color-ink-light);
+    }
+}
+
+@media (max-width: 600px) {
+    /* إلغاء الخط العمودي */
+    body {
+        background-image: 
+             radial-gradient(circle at 10% 10%, rgba(0,0,0,0.05) 1%, transparent 1%),
+             radial-gradient(circle at 70% 50%, rgba(0,0,0,0.05) 1%, transparent 1%),
+             repeating-linear-gradient(to bottom, var(--color-paper) 0px, var(--color-paper) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) var(--paper-line-height));
+        background-size: 100% 100%, 100% 100%, 100% var(--paper-line-height);
+    }
+    
+    /* الأزرار تأخذ عرضًا كاملاً */
+    .hero-actions { flex-direction: column; }
+    .btn { width: 100%; margin-top: 10px; }
+    
+    /* موقع زر "اكتب الآن" العائم */
+    .write-now-btn {
+        right: 15px;
+        bottom: 15px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
