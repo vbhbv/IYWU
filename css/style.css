@@ -1,22 +1,21 @@
 /*======================================================================*/
-/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V9"  */
-/* دمج شامل وتصحيحات الأداء والـ UI                                    */
+/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10"  */
+/* تحسين لـ SEO، إضافة أنماط نموذج الانضمام، وتأكيد ظهور الهامبرغر       */
 /*======================================================================*/
 
 /* 1. متغيرات الألوان والخطوط الأساسية (V8) */
 :root {
-    /* لون ورقة عتيقة مصفرة قليلاً */
     --color-paper: #FFFDF5;            
-    --color-ink-dark: #2C3E50;         /* كحلي عميق/حبر داكن */
+    --color-ink-dark: #2C3E50;         
     --color-ink-light: #7F8C8D;        
-    --color-accent: #8E44AD;           /* لون بنفسجي داكن للحبر/التأكيد (كلاسيكي) */
-    --color-highlight: #F39C12;        /* ذهبي/برونزي للتأكيد */
+    --color-accent: #8E44AD;           
+    --color-highlight: #F39C12;        
     
     --font-heading: 'Reem Kufi Fun', cursive, sans-serif;
     --font-body: 'Vazirmatn', sans-serif;
-    --paper-line-height: 38px; /* ارتفاع سطر أكبر لراحة القراءة (V7) */
+    --paper-line-height: 38px;
     --border-thickness: 3px;
-    --shadow-depth: 10px; /* عمق الظل الرئيسي (V7) */
+    --shadow-depth: 10px;
 }
 
 /* 2. الوضع الليلي (Dark Mode) (V9: إضافة Transition) */
@@ -51,35 +50,29 @@ body {
     color: var(--color-ink-dark);
     font-family: var(--font-body); 
     line-height: 1.8;
-    /* انتقال سلس لتغيرات الألوان (V9) */
     transition: background-color 0.8s ease, color 0.8s ease;
     
     /* خلفية الورقة (مموجة + مسطرة أفقية وعمودية) - V8 */
     background-image: 
-        /* طبقة عيوب الورق/الموجات (V8) */
         radial-gradient(circle at 10% 10%, rgba(0,0,0,0.05) 1%, transparent 1%),
         radial-gradient(circle at 70% 50%, rgba(0,0,0,0.05) 1%, transparent 1%),
-        /* طبقة الخطوط المسطرة الأفقية (V3) */
         repeating-linear-gradient(to bottom, var(--color-paper) 0px, var(--color-paper) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) var(--paper-line-height)), 
-        /* طبقة الخطوط المسطرة العمودية (V3, V7) */
         repeating-linear-gradient(to left, rgba(var(--color-ink-light), 0.05) 0, rgba(var(--color-ink-light), 0.05) 1px, transparent 1px, transparent 200px);
     
     background-size: 100% 100%, 100% 100%, 100% var(--paper-line-height), 100% 100%;
-    background-attachment: fixed; /* تثبيت الخلفية لتأثير الورقة (V1) */
+    background-attachment: fixed;
 }
 
 .content-wrapper {
     max-width: 900px;
     margin: 0 auto;
     padding: 30px 20px;
-    padding-top: 100px; /* مساحة للـ Header */
+    padding-top: 100px;
     position: relative;
     z-index: 10;
     
-    /* تأثير الشفافية والتمويه لعمق الورقة (V7) */
     background-color: rgba(255, 255, 255, 0.6); 
-    backdrop-filter: blur(2px); /* تمويه خفيف (V8) */
-    /* انتقال سلس لخلفية المحتوى */
+    backdrop-filter: blur(2px);
     transition: background-color 0.5s ease, backdrop-filter 0.5s ease;
 }
 
@@ -95,15 +88,14 @@ h1, h2, h3 {
     display: inline-block; 
 }
 .dark-mode .ink-bleed-title {
-    mix-blend-mode: normal; /* إلغاء Mix-Blend-Mode في الوضع الداكن لتحسين الوضوح */
+    mix-blend-mode: normal;
 }
 /* إعدادات Typewriter Animation (V8) */
 .handwritten-animation {
     white-space: nowrap;
     overflow: hidden;
-    /* يتم التحكم في border-right و animation من خلال JS */
 }
-/* keyframes لـ Blinking Cursor (يجب أن تكون موجودة في النهاية أو في <style>) */
+/* keyframes لـ Blinking Cursor */
 @keyframes blinking-cursor {
     0%, 100% { border-color: transparent; }
     50% { border-color: var(--color-ink-dark, #2C3E50); }
@@ -114,7 +106,7 @@ h1, h2, h3 {
     border: var(--border-thickness) solid var(--color-ink-dark);
     box-shadow: var(--shadow-depth) var(--shadow-depth) 0 0 var(--color-ink-light); 
     transition: box-shadow 0.3s, transform 0.3s;
-    border-radius: 10px 15px 10px 15px; /* شكل مرسوم (V3) */
+    border-radius: 10px 15px 10px 15px; 
     padding: 40px;
     margin: 30px 0;
     background-color: var(--color-paper);
@@ -207,7 +199,7 @@ h1, h2, h3 {
     opacity: 0.8;
 }
 
-/* 7. شريط التنقل العلوي (Header - Hashing/Hanging Edge) (V9: تصحيح الهامبرغر) */
+/* 7. شريط التنقل العلوي (Header - ظهور الهامبرغر دائماً) */
 .main-header {
     background-color: var(--color-paper);
     border-bottom: 2px dashed var(--color-ink-light);
@@ -222,36 +214,19 @@ h1, h2, h3 {
     justify-content: space-between;
     align-items: center;
     filter: url(#rough-filter);
-    transition: background-color 0.8s ease; /* V9 */
+    transition: background-color 0.8s ease;
 }
 .header-nav {
-    display: flex; /* الافتراضي: الروابط النصية ظاهرة */
+    /* نستخدم flex لعرض الهامبرغر فقط */
+    display: flex; 
     align-items: center;
 }
-.header-nav a {
-    font-family: var(--font-body);
-    font-weight: 700;
-    color: var(--color-ink-dark);
-    text-decoration: none;
-    margin: 0 15px;
-    position: relative;
-    transition: color 0.3s;
-}
-.header-nav a:hover {
-    color: var(--color-accent);
-}
-.header-nav a:hover::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-accent);
-    filter: url(#rough-filter);
+.header-nav a { /* إخفاء الروابط النصية */
+    display: none; 
 }
 .mobile-only {
-    display: none; /* الافتراضي: زر الهامبرغر مخفي */
+    /* التعديل لضمان ظهور زر الهامبرغر دائماً */
+    display: block !important; 
 }
 /* القائمة الجانبية (V9: تحسين الأداء بـ translate3d) */
 .sidebar-menu {
@@ -262,7 +237,6 @@ h1, h2, h3 {
     height: 100%;
     background-color: rgba(var(--color-ink-dark), 0.95);
     z-index: 10000;
-    /* تحسين الأداء (V9) */
     transform: translate3d(100%, 0, 0); 
     transition: transform 0.3s ease-out;
     padding-top: 50px;
@@ -364,7 +338,6 @@ h1, h2, h3 {
     transition: opacity 0.8s ease-out;
 }
 .ink-blob-animation {
-    /* يمكنك استبدال هذا بأي محمل تحميل CSS معقد */
     width: 60px;
     height: 60px;
     background: var(--color-accent);
@@ -378,31 +351,78 @@ h1, h2, h3 {
 }
 
 /*======================================================================*/
-/* 11. استجابة التصميم (Media Queries - Mobile First) (V9: التصحيح)     */
+/* 12. أنماط نموذج الانضمام (Join Form Styles) (V10)                    */
+/*======================================================================*/
+
+.sketchy-form .form-group {
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.handwritten-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: var(--color-accent);
+}
+
+.handwritten-input, .handwritten-signature {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 2px dashed var(--color-ink-light);
+    background-color: transparent;
+    font-family: var(--font-body); /* نستخدم Vazirmatn أو خط عربي يشبه الكتابة */
+    font-size: 1.1rem;
+    color: var(--color-ink-dark);
+    transition: border-bottom 0.3s;
+}
+
+.handwritten-input:focus, .handwritten-signature:focus {
+    outline: none;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+/* تأثير التوقيع بخط أكثر سمكاً */
+.handwritten-signature {
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-bottom: 3px solid var(--color-ink-dark);
+    filter: url(#ink-bleed);
+}
+.small-print {
+    font-size: 0.85rem;
+    color: var(--color-ink-light);
+    margin-top: 5px;
+}
+.submit-btn {
+    margin-top: 30px;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+
+/*======================================================================*/
+/* 13. استجابة التصميم (Media Queries) */
 /*======================================================================*/
 @media (max-width: 768px) {
-    /* قائمة التنقل - تصحيح مشكلة الهامبرغر */
-    .header-nav { 
-        display: none; /* إخفاء الروابط النصية في الجوال */
-    }
-    .mobile-only { 
-        display: block; /* إظهار زر الهامبرغر في الجوال */
-    }
+    /* لا نحتاج لتعديل mobile-only هنا لأنه display: block !important تم تطبيقه أعلاه */
     
     .content-wrapper { 
         padding-top: 70px; 
     }
     
-    /* إلغاء تأثيرات العمق والورق لتبسيط الجوال */
     .paper-fold { display: none; }
     .content-wrapper { background-color: var(--color-paper); backdrop-filter: none; }
     .hand-drawn-border {
         box-shadow: 4px 4px 0 0 var(--color-ink-light);
     }
     
-    /* الأزرار تأخذ عرضًا كاملاً */
     .hero-actions { 
-        display: flex; /* لضمان flex-direction: column في الجوال */
+        display: flex; 
         flex-direction: column; 
     }
     .btn { 
@@ -410,7 +430,6 @@ h1, h2, h3 {
         margin-top: 10px; 
     }
     
-    /* موقع زر "اكتب الآن" العائم */
     .write-now-btn {
         right: 15px;
         bottom: 15px;
@@ -419,7 +438,6 @@ h1, h2, h3 {
     }
 }
 @media (max-width: 600px) {
-     /* إلغاء الخط العمودي في الخلفية للهواتف الأصغر */
      body {
         background-image: 
              radial-gradient(circle at 10% 10%, rgba(0,0,0,0.05) 1%, transparent 1%),
