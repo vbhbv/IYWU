@@ -1,9 +1,9 @@
 /*======================================================================*/
-/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10"  */
-/* تحسين لـ SEO، إضافة أنماط نموذج الانضمام، وتأكيد ظهور الهامبرغر       */
+/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10.1"  */
+/* تم إصلاح مشكلة ظهور القائمة الجانبية (Sidebar) بشفافية وفي المنتصف    */
 /*======================================================================*/
 
-/* 1. متغيرات الألوان والخطوط الأساسية (V8) */
+/* 1. متغيرات الألوان والخطوط الأساسية */
 :root {
     --color-paper: #FFFDF5;            
     --color-ink-dark: #2C3E50;         
@@ -18,7 +18,7 @@
     --shadow-depth: 10px;
 }
 
-/* 2. الوضع الليلي (Dark Mode) (V9: إضافة Transition) */
+/* 2. الوضع الليلي (Dark Mode) */
 .dark-mode {
     --color-paper: #1B2631;
     --color-ink-dark: #ECF0F1;
@@ -28,7 +28,7 @@
 }
 
 /*======================================================================*/
-/* 3. الإعدادات العامة وتأثير الورقة الخلفية (V9: تحسين Transition)     */
+/* 3. الإعدادات العامة وتأثير الورقة الخلفية                             */
 /*======================================================================*/
 * { 
     box-sizing: border-box; 
@@ -52,7 +52,7 @@ body {
     line-height: 1.8;
     transition: background-color 0.8s ease, color 0.8s ease;
     
-    /* خلفية الورقة (مموجة + مسطرة أفقية وعمودية) - V8 */
+    /* خلفية الورقة (مموجة + مسطرة أفقية وعمودية) */
     background-image: 
         radial-gradient(circle at 10% 10%, rgba(0,0,0,0.05) 1%, transparent 1%),
         radial-gradient(circle at 70% 50%, rgba(0,0,0,0.05) 1%, transparent 1%),
@@ -76,7 +76,7 @@ body {
     transition: background-color 0.5s ease, backdrop-filter 0.5s ease;
 }
 
-/* 4. الخطوط وتأثيرات الحبر (Typography & Ink Bleed) (V5, V7) */
+/* 4. الخطوط وتأثيرات الحبر (Typography & Ink Bleed) */
 h1, h2, h3 {
     font-family: var(--font-heading);
 }
@@ -90,18 +90,14 @@ h1, h2, h3 {
 .dark-mode .ink-bleed-title {
     mix-blend-mode: normal;
 }
-/* إعدادات Typewriter Animation (V8) */
+/* إعدادات Typewriter Animation */
 .handwritten-animation {
     white-space: nowrap;
     overflow: hidden;
 }
-/* keyframes لـ Blinking Cursor */
-@keyframes blinking-cursor {
-    0%, 100% { border-color: transparent; }
-    50% { border-color: var(--color-ink-dark, #2C3E50); }
-}
 
-/* 5. الحواف والحدود (Hand-Drawn Borders & Fold Effect) (V3, V7) */
+
+/* 5. الحواف والحدود (Hand-Drawn Borders & Fold Effect) */
 .hand-drawn-border {
     border: var(--border-thickness) solid var(--color-ink-dark);
     box-shadow: var(--shadow-depth) var(--shadow-depth) 0 0 var(--color-ink-light); 
@@ -119,7 +115,7 @@ h1, h2, h3 {
     transform: translateY(-2px); 
 }
 
-/* تأثير الثني (Fold Effect) (V7) */
+/* تأثير الثني (Fold Effect) */
 .paper-fold {
     position: absolute;
     width: 0;
@@ -145,7 +141,7 @@ h1, h2, h3 {
 }
 
 
-/* 6. الأزرار والتفاعلات (Buttons & Micro-Interactions) (V3, V8) */
+/* 6. الأزرار والتفاعلات (Buttons & Micro-Interactions) */
 .btn {
     border-radius: 5px 15px 5px 10px;
     border: 2px solid var(--color-ink-dark);
@@ -174,7 +170,7 @@ h1, h2, h3 {
     background-color: transparent;
     color: var(--color-ink-dark) !important;
 }
-/* تأثير الختم الشمعي على زر "ابدأ بالكتابة" (V3, V8) */
+/* تأثير الختم الشمعي على زر "ابدأ بالكتابة" */
 .seal-effect {
     padding-right: 50px; 
 }
@@ -217,7 +213,6 @@ h1, h2, h3 {
     transition: background-color 0.8s ease;
 }
 .header-nav {
-    /* نستخدم flex لعرض الهامبرغر فقط */
     display: flex; 
     align-items: center;
 }
@@ -228,31 +223,69 @@ h1, h2, h3 {
     /* التعديل لضمان ظهور زر الهامبرغر دائماً */
     display: block !important; 
 }
-/* القائمة الجانبية (V9: تحسين الأداء بـ translate3d) */
+
+
+/* ========================================================= */
+/* 💥💥 منطقة الإصلاح: القائمة الجانبية (Sidebar) 💥💥      */
+/* ========================================================= */
 .sidebar-menu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0; /* يبدأ من اليمين (RTL) */
+    left: 0;  /* لضمان تغطية كاملة للعرض (100%) */
     width: 100%;
     height: 100%;
-    background-color: rgba(var(--color-ink-dark), 0.95);
+    
+    /* 💥 التعديل الحاسم: خلفية داكنة صلبة */
+    background-color: var(--color-ink-dark); 
+    
     z-index: 10000;
+    
+    /* 💥 التحريك للخارج (100% إلى اليمين في وضع RTL) */
     transform: translate3d(100%, 0, 0); 
     transition: transform 0.3s ease-out;
+    
     padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.sidebar-menu a {
+    
     color: var(--color-paper);
+}
+
+/* الكلاس الذي يُضاف عبر JavaScript لفتح القائمة */
+.sidebar-menu.active { 
+    /* 💥 التحريك للداخل (إظهار القائمة) */
+    transform: translate3d(0, 0, 0);
+}
+
+/* أنماط الروابط والنص داخل القائمة */
+.sidebar-menu a {
+    color: var(--color-paper); /* ضمان أن لون الروابط هو لون الورقة الفاتح */
     text-decoration: none;
     font-size: 1.5rem;
     padding: 15px 0;
     transition: color 0.3s;
+    filter: url(#rough-filter); /* تأثير الرسم على النصوص */
 }
 
-/* 8. زر "اكتب الآن" العائم (V8) */
+/* نمط زر الإغلاق لضمان ظهوره بشكل واضح */
+.sidebar-menu .close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px; 
+    color: var(--color-paper);
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+/* ========================================================= */
+/* 💥💥 نهاية منطقة الإصلاح 💥💥                              */
+/* ========================================================= */
+
+
+/* 8. زر "انضم الآن" العائم */
 .write-now-btn {
     position: fixed;
     bottom: 30px; 
@@ -279,7 +312,7 @@ h1, h2, h3 {
     transform: rotate(15deg);
 }
 
-/* 9. الشبكات والتذييل (Grid & Footer) (V3, V4, V5) */
+/* 9. الشبكات والتذييل (Grid & Footer) */
 .vision-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -322,7 +355,7 @@ h1, h2, h3 {
     margin-top: 5px;
 }
 
-/* 10. شاشة التحميل (V3) */
+/* 10. شاشة التحميل */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -350,9 +383,7 @@ h1, h2, h3 {
     100% { transform: scale(0.6); opacity: 0.8; }
 }
 
-/*======================================================================*/
-/* 12. أنماط نموذج الانضمام (Join Form Styles) (V10)                    */
-/*======================================================================*/
+/* 12. أنماط نموذج الانضمام (Handwritten Form Styles) */
 
 .sketchy-form .form-group {
     margin-bottom: 25px;
@@ -375,10 +406,11 @@ h1, h2, h3 {
     border: none;
     border-bottom: 2px dashed var(--color-ink-light);
     background-color: transparent;
-    font-family: var(--font-body); /* نستخدم Vazirmatn أو خط عربي يشبه الكتابة */
+    font-family: var(--font-body);
     font-size: 1.1rem;
     color: var(--color-ink-dark);
     transition: border-bottom 0.3s;
+    line-height: 1.5; /* تحسين قراءة النص */
 }
 
 .handwritten-input:focus, .handwritten-signature:focus {
@@ -409,7 +441,6 @@ h1, h2, h3 {
 /* 13. استجابة التصميم (Media Queries) */
 /*======================================================================*/
 @media (max-width: 768px) {
-    /* لا نحتاج لتعديل mobile-only هنا لأنه display: block !important تم تطبيقه أعلاه */
     
     .content-wrapper { 
         padding-top: 70px; 
@@ -439,6 +470,7 @@ h1, h2, h3 {
 }
 @media (max-width: 600px) {
      body {
+        /* إزالة الخطوط العمودية على شاشات صغيرة جداً */
         background-image: 
              radial-gradient(circle at 10% 10%, rgba(0,0,0,0.05) 1%, transparent 1%),
              radial-gradient(circle at 70% 50%, rgba(0,0,0,0.05) 1%, transparent 1%),
