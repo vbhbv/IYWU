@@ -3,101 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتحاد الأدباء والكتّاب العراقيين الشباب - المحبرة الرقمية</title>
+    <title>الاتحاد العراقي للكتّاب الشباب | نافذة الأدب الحديث</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body id="homepage" class="parchment-background">
+<body id="homepage">
 
-    <div id="loading-screen">
-        <div class="ink-pen-animation"></div>
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader-spinner"></div>
     </div>
 
-    <div id="the-warraq" class="warraq-icon">
+    <div id="the-warraq" class="warraq-container">
+        <i class="fas fa-robot warraq-icon"></i>
         <div class="robot-dialogue-box"></div>
     </div>
 
-    <header>
-        <div class="logo">اتحاد الأدباء والكتّاب</div>
+    <header class="main-header">
+        <div class="logo-text">الاتحاد العراقي للكتّاب</div>
         <div class="controls">
-            <button id="hamburger-btn" class="feather-icon" aria-label="قائمة التنقل"></button>
-            <button id="dark-mode-toggle" class="lamp-icon" aria-label="وضع القراءة الليلي"></button>
+            <button id="dark-mode-toggle" class="icon-btn" aria-label="الوضع الليلي">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="hamburger-btn" class="icon-btn" aria-label="قائمة التنقل">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <nav id="full-menu" class="hidden">
-        <a href="magazine.html">مجلة الرافد</a>
-        <a href="latest_members.html">آخر المنضمين (الأقلام الشابة)</a>
-        <a href="join_rules.html">ميثاق الانضمام</a>
-        <a href="#activities">برامجنا التدريبية</a>
+    <nav id="full-menu" class="sidebar-menu">
+        <button id="close-menu-btn" class="icon-btn close-btn"><i class="fas fa-times"></i></button>
+        <div class="menu-items">
+            <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="magazine.html"><i class="fas fa-book-open"></i> مجلة الرافد</a>
+            <a href="latest_members.html"><i class="fas fa-user-plus"></i> آخر المنضمين</a>
+            <a href="join_rules.html"><i class="fas fa-file-contract"></i> ميثاق الانضمام</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+        </div>
     </nav>
 
-    <main>
-        <section id="hero" class="illuminated-border section-scroll-reveal">
-            <h1>أصالة الكلمة، وفضاء الشباب</h1>
-            <p id="member-count-display" class="intro-text">
-                نحن الأقلام الجديدة التي تحمل محبرة العراق إلى المستقبل.
-            </p>
-            <a href="latest_members.html" class="button primary-button">اكتشف آخر المنضمين</a>
-        </section>
-
-        <section id="vision" class="section-scroll-reveal">
-            <h2>رؤيتنا: النافذة نحو العالمية</h2>
-            <div class="illuminated-border">
-                <p>أن يكون الاتحاد هو المظلة الثقافية الرائدة والحاضنة الإبداعية الأولى لجيل الشباب من الأدباء والكتّاب العراقيين، ونافذتهم نحو العالمية.</p>
-                <a href="join_rules.html" class="link-with-ink-effect">اقرأ ميثاقنا كاملاً</a>
+    <main class="content-wrapper">
+        <section id="hero" class="card-section reveal-element">
+            <div class="hero-content">
+                <h1>صوت الجيل الأدبي الحديث في العراق</h1>
+                <p id="member-count-display" class="sub-heading">
+                    <i class="fas fa-quote-right"></i> نحن نجمع أقوى الأقلام الشابة.
+                </p>
+                <div class="hero-actions">
+                    <a href="latest_members.html" class="btn primary-btn"><i class="fas fa-arrow-left"></i> اكتشف المنضمين</a>
+                    <a href="join_rules.html" class="btn secondary-btn">ابدأ رحلتك الآن</a>
+                </div>
             </div>
         </section>
 
-        <section id="iraqi-map" class="section-scroll-reveal">
-            <h2>خريطة الرافدين الأدبية: أصوات من كل مدينة</h2>
-            <p>انقر على مدينتك لترى أصوات الأقلام الشابة المنضمة إلينا.</p>
-            <div id="interactive-map-container" style="height: 450px; background-color: var(--color-paper);">
+        <section id="vision" class="padded-section reveal-element">
+            <h2 class="section-title">✨ رؤيتنا: الأدب كجسر عالمي</h2>
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <i class="fas fa-feather-alt"></i>
+                    <h3>حاضنة الإبداع</h3>
+                    <p>توفير بيئة داعمة للكتّاب الشباب لصقل مواهبهم وتطوير أساليبهم الأدبية والنقدية.</p>
                 </div>
-        </section>
-
-        <section id="weekly-pioneers" class="section-scroll-reveal illuminated-border">
-            <h2>✨ خلاصة الرواد الأسبوعية</h2>
-            <p class="intro-text">أكثر الأعمال تفاعلاً وصدىً لهذا الأسبوع في مجلة "الرافد".</p>
-            <div id="pioneers-list" class="flex-container">
-                <p>جاري تحليل الصدى... يرجى زيارة مجلة الرافد للمزيد.</p>
+                <div class="vision-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>الوصول العالمي</h3>
+                    <p>تمثيل الأدب العراقي الشاب في المحافل الدولية وبناء جسور تواصل مع الثقافات الأخرى.</p>
+                </div>
+                <div class="vision-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>التجديد الثقافي</h3>
+                    <p>تشجيع التفكير النقدي وتجديد الأشكال الأدبية لتواكب التحولات الاجتماعية والفكرية.</p>
+                </div>
             </div>
         </section>
         
     </main>
     
-    <button id="focus-mode-toggle" class="focus-mode-btn hidden" aria-label="وضع التركيز"></button>
+    <button id="focus-mode-toggle" class="focus-mode-btn hidden" aria-label="وضع التركيز">
+        <i class="fas fa-eye"></i>
+    </button>
 
-    <footer id="main-footer" class="illuminated-border section-scroll-reveal">
-        <div class="footer-content">
+    <footer id="main-footer">
+        <div class="footer-grid">
             <div class="footer-section">
-                <h3>حول الاتحاد</h3>
-                <p>اتحاد الأدباء والكتّاب العراقيين الشباب هو حاضنة للإبداع والأصالة، يعمل على تطوير الجيل الجديد من الكتّاب.</p>
+                <h3><i class="fas fa-map-marker-alt"></i> الاتحاد</h3>
+                <p>صوت الشباب الأدبي في بغداد، العراق.</p>
                 <p>&copy; 2025 حقوق النشر محفوظة.</p>
             </div>
             
             <div class="footer-section">
-                <h3>روابط سريعة</h3>
+                <h3><i class="fas fa-link"></i> روابط سريعة</h3>
                 <ul>
-                    <li><a href="latest_members.html" class="link-with-ink-effect">أرشيف الأعضاء</a></li>
-                    <li><a href="join_rules.html" class="link-with-ink-effect">شروط العضوية</a></li>
-                    <li><a href="#activities" class="link-with-ink-effect">البرامج التدريبية</a></li>
+                    <li><a href="latest_members.html">آخر المنضمين</a></li>
+                    <li><a href="join_rules.html">ميثاق العضوية</a></li>
                 </ul>
             </div>
 
-            <div class="footer-section contact-info">
-                <h3>تواصل معنا</h3>
-                <ul>
-                    <li>
-                        <a href="https://vbhbv.github.io/Multqa/" target="_blank" class="link-with-ink-effect">
-                            <span class="icon">📰</span> جريدة الرافد (المجلة)
-                        </a>
-                    </li>
-                     <li>
-                        <a href="https://t.me/iiollr" target="_blank" class="link-with-ink-effect">
-                            <span class="icon">✈️</span> قناة الاتحاد على تيليجرام
-                        </a>
-                    </li>
-                    </ul>
+            <div class="footer-section">
+                <h3><i class="fas fa-share-alt"></i> تواصل</h3>
+                <a href="https://vbhbv.github.io/Multqa/" target="_blank" class="social-link"><i class="fas fa-newspaper"></i> جريدة الرافد</a>
+                <a href="https://t.me/iiollr" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> قناة تيليجرام</a>
             </div>
         </div>
     </footer>
