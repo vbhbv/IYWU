@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحدث الأعضاء المنضمين | قائمة الأدباء والشعراء الجدد</title>
+    
+    <meta name="description" content="اكتشف قائمة أحدث الأعضاء المنضمين لاتحاد الكتاب العراقيين. تواصل مع الأدباء والشعراء الجدد في مجالات الشعر، الرواية، والنقد الأدبي.">
+    <meta name="keywords" content="الأعضاء الجدد اتحاد الكتاب, أدباء جدد, قائمة الشعراء, انضمام الكتاب, أدب عراقي, كتابة إبداعية">
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="members-page">
+
+    <svg width="0" height="0" style="position: absolute;">
+      <filter id="rough-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ink-bleed">
+        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
+        <feComposite operator="in" in="DILATED" in2="SourceGraphic"/>
+      </filter>
+    </svg>
+    
+    <div id="page-container"> 
+        <div id="content-wrap"> 
+
+            <header class="main-header hand-drawn-effect">
+                <div class="logo-text">الاتحاد العراقي للكتّاب</div>
+                <nav id="main-nav" class="header-nav">
+                    <button id="hamburger-btn" class="icon-btn sketch-icon mobile-only" aria-label="قائمة التنقل لصفحة الأعضاء">
+                        <i class="fas fa-pen-nib"></i>
+                    </button>
+                </nav>
+                <div class="controls">
+                    <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="تغيير إلى وضع القراءة الداكن">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <nav id="full-menu" class="sidebar-menu sketch-menu mobile-nav">
+                <button id="close-menu-btn" class="icon-btn sketch-icon close-btn"><i class="fas fa-times"></i></button>
+                <div class="menu-items">
+                    <a href="index.html"><i class="fas fa-book"></i> الرئيسية</a>
+                    <a href="events.html"><i class="fas fa-calendar-alt"></i> الفعاليات الأدبية</a>
+                    <a href="magazine.html"><i class="fas fa-scroll"></i> مجلة الرافد الأدبية</a>
+                    <a href="latest_members.html"><i class="fas fa-user-edit"></i> آخر الأدباء المنضمين</a>
+                    <a href="join-page.html"><i class="fas fa-signature"></i> دفتر العضوية 📖</a>
+                    <a href="#contact"><i class="fas fa-feather-alt"></i> تواصل مع الاتحاد</a>
+                </div>
+            </nav>
+
+            <main class="content-wrapper">
+                
+                <section class="card-section hand-drawn-border">
+                    <div class="paper-fold top-left"></div>
+                    <h1 class="ink-bleed-title">الأدباء والشعراء الجدد المنضمون حديثاً للاتحاد</h1>
+                    <p class="sub-heading">مرحباً بكم في عائلة الأدب، حيث تبدأ الرحلة.</p>
+                    
+                    <div id="members-grid" class="vision-grid">
+                        
+                        <div class="member-card vision-card hand-drawn-effect">
+                            <i class="fas fa-user"></i>
+                            <h2>أحمد السامرائي</h2>
+                            <p><strong>التخصص:</strong> رواية</p>
+                            <p><strong>المدينة:</strong> بغداد</p>
+                            <a href="#" class="btn secondary-btn drawn-btn">ملف الكاتب</a>
+                        </div>
+                        
+                        <div class="member-card vision-card hand-drawn-effect">
+                            <i class="fas fa-user"></i>
+                            <h2>فاطمة الزهراء</h2>
+                            <p><strong>التخصص:</strong> شعر عمودي</p>
+                            <p><strong>المدينة:</strong> النجف</p>
+                            <a href="#" class="btn secondary-btn drawn-btn">ملف الكاتب</a>
+                        </div>
+                        
+                        <div class="member-card vision-card hand-drawn-effect">
+                            <i class="fas fa-user"></i>
+                            <h2>مازن العبيدي</h2>
+                            <p><strong>التخصص:</strong> النقد الأدبي</p>
+                            <p><strong>المدينة:</strong> البصرة</p>
+                            <a href="#" class="btn secondary-btn drawn-btn">ملف الكاتب</a>
+                        </div>
+                        
+                    </div>
+                </section>
+                
+                <section class="padded-section">
+                    <h2 class="section-title drawn-underline ink-bleed-title">كن جزءاً من قائمة الأدباء</h2>
+                    <p>هل أنت كاتب جديد؟ <a href="join-page.html" class="btn primary-btn drawn-btn">انضم إلينا الآن</a> لتظهر مخطوطتك هنا.</p>
+                </section>
+                
+            </main>
+            
+        </div>
+
+        <footer id="main-footer" class="hand-drawn-border">
+             <div class="paper-fold bottom-right"></div> 
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> مقر الاتحاد الأدبي</h3>
+                    <p>صوت الشباب الأدبي في بغداد، العراق.</p>
+                    <p>&copy; 2025 حقوق النشر محفوظة.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> روابط سريعة للكتّاب</h3>
+                    <ul>
+                        <li><a href="latest_members.html">آخر الأدباء المنضمين</a></li>
+                        <li><a href="join-page.html">تسجيل عضوية اتحاد الكتاب</a></li>
+                        <li><a href="events.html">جدول الفعاليات الثقافية</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i> تواصل مع الأدباء</h3>
+                    <a href="magazine.html" class="social-link"><i class="fas fa-newspaper"></i> مجلة الرافد الأدبية</a>
+                    <a href="https://t.me/iiollr" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> قناة تيليجرام للكتاب</a>
+                </div>
+            </div>
+        </footer>
+    </div> 
+
+    <script src="js/main.js" defer></script> 
+</body>
+</html>
