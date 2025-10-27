@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل عضوية اتحاد الكتاب | دفتر العضوية 📖 - انضمام تفاعلي</title>
+    
+    <meta name="description" content="سجّل عضويتك في الاتحاد العراقي للكتّاب عبر نموذج المخطوطة التفاعلي. املأ دفتر العضوية بخط القلم وانضم لصف الأدباء والشعراء.">
+    <meta name="keywords" content="تسجيل عضوية اتحاد الكتاب, انضمام للكتاب, نموذج مخطوطة, دفتر العضوية, الكتابة الإبداعية, أدباء وشعراء العراق, طلب عضوية أدبية">
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght=400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="join-page">
+
+    <svg width="0" height="0" style="position: absolute;">
+      <filter id="rough-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ink-bleed">
+        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
+        <feComposite operator="in" in="DILATED" in2="SourceGraphic"/>
+      </filter>
+    </svg>
+    
+    <div id="page-container"> 
+        <div id="content-wrap"> 
+
+            <header class="main-header hand-drawn-effect">
+                <div class="logo-text">الاتحاد العراقي للكتّاب</div>
+                <nav id="main-nav" class="header-nav">
+                    <button id="hamburger-btn" class="icon-btn sketch-icon mobile-only" aria-label="قائمة التنقل لصفحة الانضمام">
+                        <i class="fas fa-pen-nib"></i>
+                    </button>
+                </nav>
+                <div class="controls">
+                    <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="تغيير إلى وضع القراءة الداكن">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <nav id="full-menu" class="sidebar-menu sketch-menu mobile-nav">
+                <button id="close-menu-btn" class="icon-btn sketch-icon close-btn"><i class="fas fa-times"></i></button>
+                <div class="menu-items">
+                    <a href="index.html"><i class="fas fa-book"></i> الرئيسية</a>
+                    <a href="events.html"><i class="fas fa-calendar-alt"></i> الفعاليات الأدبية</a>
+                    <a href="magazine.html"><i class="fas fa-scroll"></i> مجلة الرافد الأدبية</a>
+                    <a href="latest_members.html"><i class="fas fa-user-edit"></i> آخر الأدباء المنضمين</a>
+                    <a href="join-page.html"><i class="fas fa-signature"></i> دفتر العضوية 📖</a>
+                    <a href="#contact"><i class="fas fa-feather-alt"></i> تواصل مع الاتحاد</a>
+                </div>
+            </nav>
+
+            <main class="content-wrapper">
+                
+                <section class="card-section hand-drawn-border join-form-container">
+                    <div class="paper-fold top-left"></div>
+                    <h1 class="ink-bleed-title">دفتر العضوية 📖: تسجيل انضمام إلى اتحاد الكتاب</h1>
+                    <p class="sub-heading">املأ هذه المخطوطة الإلكترونية بانتماء صادق، وكأنك توقع بقلمك الخاص.</p>
+                    
+                    <form id="join-form" class="sketchy-form" action="/submit-join" method="POST">
+                        
+                        <div class="form-group">
+                            <label for="name" class="handwritten-label"><i class="fas fa-user-edit"></i> اسم الأديب/الكاتب كاملاً (كما يُكتب في المخطوطات):</label>
+                            <input type="text" id="name" name="name" required class="handwritten-input" placeholder="اكتب اسمك كاملاً هنا...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city" class="handwritten-label"><i class="fas fa-map-marker-alt"></i> مدينة الإقامة (مكان ولادة المخطوطة):</label>
+                            <input type="text" id="city" name="city" required class="handwritten-input" placeholder="بغداد، البصرة، الموصل، إلخ.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialization" class="handwritten-label"><i class="fas fa-scroll"></i> التخصص الأدبي (الشعر، الرواية، القصة، المقال):</label>
+                            <select id="specialization" name="specialization" required class="handwritten-input">
+                                <option value="">اختر تخصصك الأدبي...</option>
+                                <option value="شعر">شعر</option>
+                                <option value="رواية">رواية</option>
+                                <option value="قصة">قصة قصيرة</option>
+                                <option value="مقال">مقال/نقد أدبي</option>
+                                <option value="اخر">مجالات أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="work" class="handwritten-label"><i class="fas fa-pen-nib"></i> نموذج من عمل أدبي (رابط لمنشور أو عمل سابق):</label>
+                            <textarea id="work" name="work" rows="4" required class="handwritten-input" placeholder="ضع رابطاً لأبرز أعمالك أو اكتب نبذة عنها هنا."></textarea>
+                        </div>
+
+                        <div class="signature-area">
+                            <label for="signature" class="handwritten-label"><i class="fas fa-signature"></i> التوقيع والعهد (توقيع إلكتروني):</label>
+                            <input type="text" id="signature" name="signature" required class="handwritten-signature" placeholder="اكتب اسمك مرة أخرى هنا ليكون بمثابة توقيع إلكتروني">
+                            <p class="small-print">بالنقر على "أرسل المخطوطة"، أُقر بصدق الانضمام وباحترامي لميثاق الاتحاد.</p>
+                        </div>
+                        
+                        <button type="submit" class="btn primary-btn drawn-btn seal-effect submit-btn">
+                            <i class="fas fa-paper-plane"></i> أرسل المخطوطة (طلب العضوية)
+                        </button>
+                        
+                    </form>
+                    
+                </section>
+                
+                <section class="padded-section">
+                    <h2 class="section-title drawn-underline ink-bleed-title">ميثاق الاتحاد وأحكام العضوية</h2>
+                    <p>قبل إرسال طلب الانضمام، يرجى قراءة <a href="#rules">ميثاق وأحكام العضوية</a> لضمان التوافق مع رؤية اتحاد الكتاب.</p>
+                </section>
+                
+            </main>
+            
+        </div>
+
+        <footer id="main-footer" class="hand-drawn-border">
+             <div class="paper-fold bottom-right"></div> 
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> مقر الاتحاد الأدبي</h3>
+                    <p>صوت الشباب الأدبي في بغداد، العراق.</p>
+                    <p>&copy; 2025 حقوق النشر محفوظة.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> روابط سريعة للكتّاب</h3>
+                    <ul>
+                        <li><a href="latest_members.html">آخر الأدباء المنضمين</a></li>
+                        <li><a href="join-page.html">تسجيل عضوية اتحاد الكتاب</a></li>
+                        <li><a href="events.html">جدول الفعاليات الثقافية</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i> تواصل مع الأدباء</h3>
+                    <a href="magazine.html" class="social-link"><i class="fas fa-newspaper"></i> مجلة الرافد الأدبية</a>
+                    <a href="https://t.me/iiollr" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> قناة تيليجرام للكتاب</a>
+                </div>
+            </div>
+        </footer>
+    </div> 
+
+    <script src="js/main.js" defer></script> 
+</body>
+</html>
