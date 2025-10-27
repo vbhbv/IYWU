@@ -1,96 +1,172 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ... (أكواد تحميل البيانات الأساسية) ...
+    // =======================================================
+    // 1. تحديد العناصر الرئيسية
+    // =======================================================
+    const body = document.body;
+    const loadingScreen = document.getElementById('loading-screen');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const focusModeToggle = document.getElementById('focus-mode-toggle');
     
-    const warraq = document.getElementById('the-warraq');
-    const dialogueBox = warraq ? warraq.querySelector('.robot-dialogue-box') : null;
+    // عناصر التنقل (V5)
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const fullMenu = document.getElementById('full-menu');
 
-    // التأكد من الأيقونة الفنية للروبوت
-    if (warraq) {
-        warraq.querySelector('.warraq-icon').className = 'fas fa-quidditch warraq-icon'; 
+    // عناصر Typewriter (V8)
+    const typewriterElements = document.querySelectorAll('.handwritten-animation');
+
+    // =======================================================
+    // 2. وظائف التحميل الأولي (Loading & Initial State) (V2, V3)
+    // =======================================================
+
+    // إخفاء شاشة التحميل
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    // تفعيل زر التركيز بعد التحميل (V1)
+                    if (focusModeToggle) focusModeToggle.classList.remove('hidden'); 
+                }, 800);
+            }
+        }, 500);
+        
+        // بدء تأثير الكتابة اليدوية بعد التحميل
+        initTypewriter();
+    });
+
+    // =======================================================
+    // 3. وظائف الوضع الداكن (Dark Mode) (V2)
+    // =======================================================
+    
+    // التحقق من حالة الوضع الداكن المخزنة
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
     }
 
-    // =======================================================
-    // 4. الروبوت "الوراق" (المساعد الفني المرسوم)
-    // =======================================================
-    
-    function getPreciseWelcomeMessage() {
-        const hour = new Date().getHours();
-        let greeting;
-
-        if (hour >= 4 && hour < 12) {
-            greeting = "مرحباً أيها الفنّان. هل رتبت ألوانك؟ اليوم وقت الإلهام.";
-        } else if (hour >= 12 && hour < 18) {
-            greeting = "يا لك من كاتب مجتهد. لنصنع اليوم مخطوطة لا تُنسى.";
-        } else if (hour >= 18 && hour < 22) {
-            greeting = "بدأ الليل. الضوء الخافت يثير الأفكار. تفضل ببطء.";
-        } else {
-            greeting = "في صمت الليل، يرتفع صوت الكلمات. اكتب يا صديقي، اكتب.";
+    // تبديل الوضع الداكن
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const newMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', newMode);
+            
+            // تحديث أيقونة الزر
+            const icon = darkModeToggle.querySelector('i');
+            if (icon) {
+                 icon.className = newMode ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        });
+        
+        // تعيين الأيقونة الابتدائية
+        const initialIcon = darkModeToggle.querySelector('i');
+        if (initialIcon) {
+            initialIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
         }
-
-        return `[الورّاق يرسم]: ${greeting}`;
     }
 
-    function initWarraq(dialogues) {
-        if (!warraq || !dialogueBox) return;
-
-        const displayMessage = (msg, duration = 6000) => {
-            if (dialogueBox.textContent === '') {
-                dialogueBox.textContent = msg;
-                setTimeout(() => { dialogueBox.textContent = ''; }, duration);
+    // =======================================================
+    // 4. وظيفة وضع التركيز (Focus Mode) (V1)
+    // =======================================================
+    if (focusModeToggle) {
+        focusModeToggle.addEventListener('click', () => {
+            const isFocused = body.classList.toggle('focus-mode');
+            const icon = focusModeToggle.querySelector('i');
+            
+            if (icon) {
+                icon.className = isFocused ? 'fas fa-search-minus' : 'fas fa-search-plus';
             }
-        };
+        });
+    }
 
-        const initialDialogue = getPreciseWelcomeMessage();
-        
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                warraq.style.opacity = 1;
-                displayMessage(initialDialogue, 9000); 
-            }, 1000);
+
+    // =======================================================
+    // 5. وظيفة التنقل للهاتف المحمول (Menu Toggle) (V5)
+    // =======================================================
+    if (hamburgerBtn && fullMenu && closeMenuBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            fullMenu.style.transform = 'translateX(0)';
         });
 
-        warraq.addEventListener('click', () => {
-            const wittyReplies = [
-                "لا تنقر بعنف على الورقة! هل هناك نقطة حبر أزعجتك؟",
-                "أرى قلمك يتوقف... هل نفدت منك الفكرة أم الحبر؟",
-                "هل تفضل أن أرسم لك خريطة الأفكار؟ تفضل بطلبك الفني.",
-                "لا تخف من شطب الكلمات. الشطب جزء من الفن.",
-            ];
-            dialogueBox.textContent = `[الورّاق يناشدك]: ${wittyReplies[Math.floor(Math.random() * wittyReplies.length)]}`;
-            setTimeout(() => { dialogueBox.textContent = ''; }, 6000);
+        closeMenuBtn.addEventListener('click', () => {
+            fullMenu.style.transform = 'translateX(100%)';
         });
         
-        initCalmScrollMonitor(displayMessage);
-        initEmptyContentAlert(displayMessage); 
+        // إغلاق القائمة عند النقر على رابط
+        fullMenu.querySelectorAll('a').forEach(link => {
+             link.addEventListener('click', () => {
+                 fullMenu.style.transform = 'translateX(100%)';
+             });
+        });
+    }
+
+    // =======================================================
+    // 6. وظيفة الكتابة اليدوية المتحركة (Typewriter Effect) (V8)
+    // =======================================================
+
+    function startTypewriterEffect(element, delay = 0) {
+        if (!element) return;
+        
+        // عرض العنصر لبدء الكتابة
+        element.style.visibility = 'visible'; 
+        
+        const text = element.getAttribute('data-text'); // استخدام data-text لتخزين النص الأصلي
+        element.textContent = ''; 
+        
+        element.style.borderRight = '2px solid var(--color-ink-dark, #2C3E50)'; 
+        element.style.animation = 'blinking-cursor 0.75s step-end infinite';
+        
+        let i = 0;
+        setTimeout(() => {
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 70); // سرعة الكتابة 70ms
+                } else {
+                    // إيقاف مؤشر الكتابة بعد الانتهاء
+                    element.style.borderRight = 'none';
+                    element.style.animation = 'none';
+                }
+            }
+            type();
+        }, delay);
+    }
+    
+    function initTypewriter() {
+        typewriterElements.forEach((el, index) => {
+            // تخزين النص الأصلي قبل البدء
+            el.setAttribute('data-text', el.textContent.trim());
+            // إخفاء النص مبدئياً
+            el.textContent = '';
+            
+            // بدء الكتابة مع تأخير تدريجي
+            startTypewriterEffect(el, index * 500 + 1000); 
+        });
     }
     
     // =======================================================
-    // 5. مراقب التمرير الهادئ (Calm Scroll Monitor)
+    // 7. مراقبة العناصر عند التمرير (Reveal Elements) (V2)
     // =======================================================
-    function initCalmScrollMonitor(displayMessage) {
-        let scrollTimeout;
-        let isStoppedReading = false;
+    
+    const revealElements = document.querySelectorAll('.reveal-element');
 
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            isStoppedReading = false;
-
-            scrollTimeout = setTimeout(() => {
-                if (!isStoppedReading && window.scrollY > 300) {
-                    displayMessage("[تأمل]: توقفت هنا. لابد أن هذا المقطع ترك بقعة حبر في ذاكرتك.", 5000);
-                    isStoppedReading = true; 
-                }
-            }, 2000); 
-        });
-
-        window.addEventListener('scroll', () => {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-                displayMessage("[مخطوطة مكتملة]: لقد وصلت إلى نهاية الورقة. اترك توقيعك في الأسفل.", 7000);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
+            // إزالة else لتمكين التأثير عند كل ظهور (للتصميم الورقي قد يكون أفضل)
         });
-    }
+    }, {
+        threshold: 0.1 // تبدأ بالظهور عندما يكون 10% من العنصر مرئيًا
+    });
 
-    // ... (بقية الأكواد تبقى كما هي) ...
+    revealElements.forEach(element => {
+        observer.observe(element);
+    });
 
 });
