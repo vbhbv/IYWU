@@ -3,91 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتحاد الأدباء والكتّاب | ورقة المحبرة</title>
+    <title>اتحاد الأدباء والكتّاب | ورقة المخطوطة V8 (الإتقان والكمال)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        @keyframes blinking-cursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--color-ink-dark, #2C3E50); }
+        }
+    </style>
 </head>
 <body id="homepage">
 
-    <div id="loading-screen" class="loading-screen parchment-ink-loader">
-        <div class="ink-blob-animation"></div>
-    </div>
-
-    <div id="the-warraq" class="warraq-container">
-        <i class="fas fa-quidditch warraq-icon"></i> <div class="robot-dialogue-box"></div>
-    </div>
-
-    <header class="main-header hand-drawn-effect">
-        <div class="logo-text">الاتحاد العراقي للكتّاب</div>
-        <div class="controls">
-            <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="وضع المخطوطة الداكن">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button id="hamburger-btn" class="icon-btn sketch-icon" aria-label="قائمة التنقل">
-                <i class="fas fa-pen-nib"></i>
-            </button>
-        </div>
-    </header>
-
-    <nav id="full-menu" class="sidebar-menu sketch-menu">
-        <button id="close-menu-btn" class="icon-btn sketch-icon close-btn"><i class="fas fa-times"></i></button>
-        <div class="menu-items">
-            <a href="index.html"><i class="fas fa-book"></i> الرئيسية</a>
-            <a href="magazine.html"><i class="fas fa-scroll"></i> مجلة الرافد</a>
-            <a href="latest_members.html"><i class="fas fa-user-edit"></i> آخر المنضمين</a>
-            <a href="join_rules.html"><i class="fas fa-signature"></i> ميثاق الانضمام</a>
-            <a href="#contact"><i class="fas fa-feather-alt"></i> تواصل معنا</a>
-        </div>
-    </nav>
-
-    <main class="content-wrapper">
-        <section id="hero" class="card-section hand-drawn-border reveal-element">
-            <div class="hero-content">
-                <h1>خطوة أولى نحو الورقة البيضاء</h1>
-                <p id="member-count-display" class="sub-heading">
-                    نحن نجمع الأقلام، ونحفر الكلمات.
-                </p>
-                <div class="hero-actions">
-                    <a href="latest_members.html" class="btn primary-btn drawn-btn"><i class="fas fa-arrow-left"></i> اكتشف المنضمين</a>
-                    <a href="join_rules.html" class="btn secondary-btn drawn-btn">ابدأ بالكتابة</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="vision" class="padded-section reveal-element">
-            <h2 class="section-title drawn-underline">✨ رؤيتنا: الأدب كلوحة</h2>
-            <div class="vision-grid">
-                <div class="vision-card hand-drawn-effect">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>حاضنة الإبداع</h3>
-                    <p>نرسم بالكلمات، ونلون بالمعاني، ونجعل النص لوحة فنية متكاملة.</p>
-                </div>
-                <div class="vision-card hand-drawn-effect">
-                    <i class="fas fa-compass"></i>
-                    <h3>الوصول العالمي</h3>
-                    <p>نتجه بالبوصلة نحو أصالة الكلمة وجمال التعبير في كل مكان.</p>
-                </div>
-                </div>
-        </section>
-        
-        <section id="iraqi-map" class="padded-section reveal-element">
-            <h2 class="section-title drawn-underline">رسم بياني لأصوات المدن</h2>
-            <div id="interactive-map-container" class="sketchy-area">
-                <p>(هنا يرسم قلم الوراق أصوات الكتّاب...)</p>
-            </div>
-        </section>
-        
-    </main>
+    <svg width="0" height="0" style="position: absolute;">
+      <filter id="rough-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ink-bleed">
+        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
+        <feComposite operator="in" in="DILATED" in2="SourceGraphic"/>
+      </filter>
+    </svg>
     
-    <button id="focus-mode-toggle" class="focus-mode-btn hidden drawn-btn" aria-label="وضع المخطوطة">
-        <i class="fas fa-search-plus"></i>
-    </button>
+    <div id="page-container"> 
+        <div id="content-wrap"> 
 
-    <footer id="main-footer" class="hand-drawn-border">
+            <div id="loading-screen" class="loading-screen parchment-ink-loader">
+                <div class="ink-blob-animation"></div>
+            </div>
+
+            <a href="join_rules.html" id="write-now-btn" class="write-now-btn">
+                <i class="fas fa-quill floating-quill"></i>
+                <span class="btn-text">اكتب الآن</span>
+            </a>
+
+            <header class="main-header hand-drawn-effect">
+                <div class="logo-text">الاتحاد العراقي للكتّاب</div>
+                <nav id="main-nav" class="header-nav">
+                    <a href="index.html" class="nav-item">الرئيسية</a>
+                    <a href="magazine.html" class="nav-item">المجلة</a>
+                    <a href="latest_members.html" class="nav-item">المنضمين</a>
+                    <button id="hamburger-btn" class="icon-btn sketch-icon mobile-only" aria-label="قائمة التنقل">
+                        <i class="fas fa-pen-nib"></i>
+                    </button>
+                </nav>
+                <div class="controls">
+                    <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="وضع المخطوطة الداكن">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <nav id="full-menu" class="sidebar-menu sketch-menu mobile-nav">
+                <button id="close-menu-btn" class="icon-btn sketch-icon close-btn"><i class="fas fa-times"></i></button>
+                <div class="menu-items">
+                    <a href="index.html"><i class="fas fa-book"></i> الرئيسية</a>
+                    <a href="magazine.html"><i class="fas fa-scroll"></i> مجلة الرافد</a>
+                    <a href="latest_members.html"><i class="fas fa-user-edit"></i> آخر المنضمين</a>
+                    <a href="join_rules.html"><i class="fas fa-signature"></i> ميثاق الانضمام</a>
+                    <a href="#contact"><i class="fas fa-feather-alt"></i> تواصل معنا</a>
+                </div>
+            </nav>
+
+            <main class="content-wrapper">
+                
+                <section id="hero" class="card-section hand-drawn-border reveal-element">
+                    <div class="paper-fold top-left"></div> 
+                    
+                    <div class="hero-content">
+                        <h1 class="ink-bleed-title handwritten-animation">فصل جديد يبدأ هنا</h1>
+                        <p id="member-count-display" class="sub-heading">
+                            في كل سطر يكمن جوهر الحكايات القديمة والحديثة.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="latest_members.html" class="btn primary-btn drawn-btn"><i class="fas fa-arrow-left"></i> اكتشف المنضمين</a>
+                            <a href="join_rules.html" class="btn secondary-btn drawn-btn seal-effect">ابدأ بالكتابة</a> 
+                        </div>
+                    </div>
+                </section>
+
+                <section id="vision" class="padded-section reveal-element">
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">✨ الرؤية: حفر الكلمات في الزمن</h2>
+                    <div class="vision-grid">
+                        <div class="vision-card hand-drawn-effect">
+                            <i class="fas fa-paint-brush"></i>
+                            <h3>صقل المواهب</h3>
+                            <p>صقل كل موهبة لتصبح قطعة فنية لا تشوبها شائبة.</p>
+                        </div>
+                        <div class="vision-card hand-drawn-effect">
+                            <i class="fas fa-compass"></i>
+                            <h3>الرؤية العالمية</h3>
+                            <p>توجيه البوصلة نحو أصالة الكلمة وجمال التعبير في كل مكان.</p>
+                        </div>
+                        <div class="vision-card hand-drawn-effect">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>التجديد الفكري</h3>
+                            <p>تشجيع التفكير النقدي وتجديد الأشكال الأدبية لتواكب التحولات الفكرية.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="iraqi-map" class="padded-section reveal-element">
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">رسم بياني لأصوات المدن</h2>
+                    <div id="interactive-map-container" class="sketchy-area">
+                        <p>(هنا يرسم قلم الوراق أصوات الكتّاب...)</p>
+                    </div>
+                </section>
+                
+            </main>
+            
+            <button id="focus-mode-toggle" class="focus-mode-btn hidden drawn-btn" aria-label="وضع المخطوطة">
+                <i class="fas fa-search-plus"></i>
+            </button>
+        </div>
+
+        <footer id="main-footer" class="hand-drawn-border">
+             <div class="paper-fold bottom-right"></div> 
+            
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> الاتحاد</h3>
+                    <p>صوت الشباب الأدبي في بغداد، العراق.</p>
+                    <p>&copy; 2025 حقوق النشر محفوظة.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> روابط سريعة</h3>
+                    <ul>
+                        <li><a href="latest_members.html">آخر المنضمين</a></li>
+                        <li><a href="join_rules.html">ميثاق العضوية</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i> تواصل</h3>
+                    <a href="https://vbhbv.github.io/Multqa/" target="_blank" class="social-link"><i class="fas fa-newspaper"></i> مجلة الرافد</a>
+                    <a href="https://t.me/iiollr" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> قناة تيليجرام</a>
+                </div>
+            </div>
         </footer>
+    </div> 
 
     <script src="js/main.js" defer></script> 
 </body>
