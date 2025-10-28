@@ -9,17 +9,11 @@
     <meta name="keywords" content="اتحاد الأدباء والكتاب العراقيين, الثقافة والإبداع, أدب, كتابة, فعاليات ثقافية, انضمام للكتاب, شعراء العراق, أدباء">
     <meta name="author" content="اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع">
     
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght=400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     
-    <style>
-        @keyframes blinking-cursor {
-            0%, 100% { border-color: transparent; }
-            50% { border-color: var(--color-ink-dark, #2C3E50); }
-        }
-    </style>
 </head>
 <body id="homepage">
 
@@ -69,7 +63,7 @@
                     <a href="magazine.html"><i class="fas fa-scroll"></i> مجلة الرافد الأدبية</a>
                     <a href="latest_members.html"><i class="fas fa-user-edit"></i> آخر الأدباء المنضمين</a>
                     <a href="join-page.html"><i class="fas fa-signature"></i> دفتر العضوية 📖 (انضمام)</a>
-                    </div>
+                </div>
             </nav>
 
             <main class="content-wrapper">
@@ -113,9 +107,42 @@
                 
                 <section id="iraqi-map" class="padded-section reveal-element">
                     <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">خريطة أصوات المدن العراقية الأدبية</h2>
-                    <div id="interactive-map-container" class="sketchy-area">
-                        <p>(هنا يرسم قلم الوراق أصوات الكتّاب...)</p>
-                        <img src="path/to/iraqi-map.png" alt="خريطة تفاعلية توضح أماكن تواجد الأدباء والكتاب الأعضاء في الاتحاد العراقي للكتّاب" style="display: none;">
+                    <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
+                        انقر على المدن لاكتشاف الأدباء والأصوات الجديدة.
+                    </p>
+                
+                    <div id="interactive-map-container" class="sketchy-area map-style-container hand-drawn-border">
+                        
+                        <div class="map-outline" style="background-image: url('images/iraq-map-sketch.png');" aria-label="خريطة العراق الأدبية">
+                            
+                            <a href="city-profile.html?city=baghdad" class="city-point city-baghdad" data-city="بغداد">
+                                <i class="fas fa-feather-alt"></i>
+                                <span class="city-name">بغداد</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=mosul" class="city-point city-mosul" data-city="الموصل">
+                                <i class="fas fa-scroll"></i>
+                                <span class="city-name">الموصل</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=basra" class="city-point city-basra" data-city="البصرة">
+                                <i class="fas fa-ship"></i>
+                                <span class="city-name">البصرة</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=erbil" class="city-point city-erbil" data-city="أربيل">
+                                <i class="fas fa-mountain"></i>
+                                <span class="city-name">أربيل</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=najaf" class="city-point city-najaf" data-city="النجف">
+                                <i class="fas fa-book-reader"></i>
+                                <span class="city-name">النجف</span>
+                            </a>
+                
+                        </div>
+                
+                        <p class="map-caption">(تمثل النقاط أعلاه مراكز أدبية وهمية للأعضاء النشطين في الاتحاد.)</p>
                     </div>
                 </section>
                 
@@ -139,6 +166,7 @@
                     <h3><i class="fas fa-link"></i> روابط سريعة للكتّاب</h3>
                     <ul>
                         <li><a href="about.html">عن الاتحاد</a></li> 
+                        <li><a href="latest_members.html">آخر الأدباء المنضمين</a></li>
                         <li><a href="join-page.html">تسجيل عضوية اتحاد الكتاب</a></li>
                         <li><a href="events.html">جدول الفعاليات الثقافية</a></li>
                     </ul>
