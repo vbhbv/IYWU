@@ -6,13 +6,22 @@
     <title>اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع</title>
     
     <meta name="description" content="اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع. المنظمة الرائدة في ترقية الثقافة الرقمية والنشر الإلكتروني في العراق والوطن العربي. انضم إلينا وأطلق إبداعك الرقمي.">
-    <meta name="keywords" content="اتحاد الأدباء والكتاب العراقيين, الثقافة والإبداع, الأدب الرقمي, كتّاب عراقيين, ثقافة رقمية, مجول شعلان الحيالي, النشر الإلكتروني">
-
+    <meta name="keywords" content="اتحاد الأدباء والكتاب العراقيين, الثقافة والإبداع, أدب, كتابة, فعاليات ثقافية, انضمام للكتاب, شعراء العراق, أدباء">
+    <meta name="author" content="اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع">
+    
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght=400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        @keyframes blinking-cursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--color-ink-dark, #2C3E50); }
+        }
+    </style>
 </head>
-<body>
+<body id="homepage">
 
     <svg width="0" height="0" style="position: absolute;">
       <filter id="rough-filter">
@@ -28,10 +37,19 @@
     <div id="page-container"> 
         <div id="content-wrap"> 
 
+            <div id="loading-screen" class="loading-screen parchment-ink-loader">
+                <div class="ink-blob-animation" role="status" aria-label="جار تحميل صفحة اتحاد الكتاب والأدباء"></div>
+            </div>
+
+            <a href="join-page.html" id="write-now-btn" class="write-now-btn" aria-label="الانضمام وتسجيل العضوية في الاتحاد">
+                <i class="fas fa-quill floating-quill"></i>
+                <span class="btn-text">انضم الآن</span>
+            </a>
+
             <header class="main-header hand-drawn-effect">
                 <div class="logo-text">اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع</div>
                 <nav id="main-nav" class="header-nav">
-                    <button id="hamburger-btn" class="icon-btn sketch-icon mobile-only" aria-label="قائمة التنقل">
+                    <button id="hamburger-btn" class="icon-btn sketch-icon mobile-only" aria-label="قائمة التنقل الرئيسية لصفحات الأدب">
                         <i class="fas fa-pen-nib"></i>
                     </button>
                 </nav>
@@ -39,69 +57,74 @@
                     <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="تغيير إلى وضع القراءة الداكن">
                         <i class="fas fa-moon"></i>
                     </button>
-                    </div>
+                </div>
             </header>
 
             <nav id="full-menu" class="sidebar-menu sketch-menu mobile-nav">
                 <button id="close-menu-btn" class="icon-btn sketch-icon close-btn"><i class="fas fa-times"></i></button>
                 <div class="menu-items">
                     <a href="index.html"><i class="fas fa-book"></i> الرئيسية</a>
-                    <a href="about.html"><i class="fas fa-info-circle"></i> عن الاتحاد</a>
+                    <a href="about.html"><i class="fas fa-info-circle"></i> عن الاتحاد</a> 
                     <a href="events.html"><i class="fas fa-calendar-alt"></i> الفعاليات الأدبية</a>
                     <a href="magazine.html"><i class="fas fa-scroll"></i> مجلة الرافد الأدبية</a>
                     <a href="latest_members.html"><i class="fas fa-user-edit"></i> آخر الأدباء المنضمين</a>
-                    <a href="join-page.html"><i class="fas fa-signature"></i> دفتر العضوية 📖</a>
-                </div>
+                    <a href="join-page.html"><i class="fas fa-signature"></i> دفتر العضوية 📖 (انضمام)</a>
+                    </div>
             </nav>
 
             <main class="content-wrapper">
                 
-                <section class="hand-drawn-border hero-section">
-                    <div class="paper-fold top-left"></div>
-                    
-                    <h1 class="ink-bleed-title handwritten-animation" data-text="اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع">
-                         اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع
-                    </h1>
-                    <p class="hero-tagline">
-                         <span class="handwritten-animation" data-text="نحو ترقية الثقافة الرقمية والنشر الإلكتروني في العراق والوطن العربي">
-                             نحو ترقية الثقافة الرقمية والنشر الإلكتروني في العراق والوطن العربي
-                         </span>
-                    </p>
-                    
-                    <div class="hero-actions">
-                        <a href="join-page.html" class="btn primary-btn seal-effect">
-                            <i class="fas fa-pen-fancy"></i> انضم إلينا الآن
-                        </a>
-                        <a href="about.html" class="btn secondary-btn">
-                            <i class="fas fa-info-circle"></i> عن الاتحاد ورئيسه
-                        </a>
+                <section id="hero" class="card-section hand-drawn-border reveal-element">
+                    <div class="paper-fold top-left"></div> 
+                    <div class="hero-content">
+                        <h1 class="ink-bleed-title handwritten-animation" data-text="مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا">
+                            مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا
+                        </h1>
+                        <p id="member-count-display" class="sub-heading">
+                            في كل سطر يكمن جوهر الحكايات القديمة والحديثة.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="latest_members.html" class="btn primary-btn drawn-btn"><i class="fas fa-arrow-left"></i> اكتشف الأدباء المنضمين</a>
+                            <a href="join-page.html" class="btn secondary-btn drawn-btn seal-effect">انضم إلى الاتحاد</a> 
+                        </div>
+                    </div>
+                </section>
+
+                <section id="vision" class="padded-section reveal-element">
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">✨ الرؤية: دعم الأدباء والكتاب الشباب</h2>
+                    <div class="vision-grid">
+                        <div class="vision-card hand-drawn-effect">
+                            <i class="fas fa-paint-brush"></i>
+                            <h3>صقل المواهب الأدبية</h3>
+                            <p>صقل كل موهبة لتصبح قطعة فنية لا تشوبها شائبة.</p>
+                        </div>
+                        <div class="vision-card hand-drawn-effect">
+                            <i class="fas fa-compass"></i>
+                            <h3>الرؤية العالمية للكتابة</h3>
+                            <p>توجيه البوصلة نحو أصالة الكلمة وجمال التعبير في كل مكان.</p>
+                        </div>
+                        <div class="vision-card hand-drawn-effect">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>التجديد الفكري الأدبي</h3>
+                            <p>تشجيع التفكير النقدي وتجديد الأشكال الأدبية لتواكب التحولات الفكرية.</p>
+                        </div>
                     </div>
                 </section>
                 
-                <section class="hand-drawn-border vision-mission-section">
-                     <h2 class="section-title drawn-underline ink-bleed-title">رؤيتنا ورسالتنا</h2>
-                     <p>نعمل على صياغة مستقبل الكتابة الإبداعية في العصر الرقمي.</p>
-                     
-                     <div class="vision-grid">
-                        <div class="vision-card hand-drawn-effect reveal-element">
-                            <h4 class="ink-bleed-title"><i class="fas fa-lightbulb"></i> الرؤية</h4>
-                            <p>أن نكون المنصة الأبرز عربياً لكتّاب الإنترنت، ومحفزاً للتحول نحو ثقافة رقمية متكاملة.</p>
-                        </div>
-                        <div class="vision-card hand-drawn-effect reveal-element">
-                            <h4 class="ink-bleed-title"><i class="fas fa-bullhorn"></i> الرسالة</h4>
-                            <p>دعم الأعضاء بالورش والموارد، وتنظيم الفعاليات لتعميق الوعي بقضايا النشر الإلكتروني والأدب التفاعلي.</p>
-                        </div>
-                     </div>
+                <section id="iraqi-map" class="padded-section reveal-element">
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">خريطة أصوات المدن العراقية الأدبية</h2>
+                    <div id="interactive-map-container" class="sketchy-area">
+                        <p>(هنا يرسم قلم الوراق أصوات الكتّاب...)</p>
+                        <img src="path/to/iraqi-map.png" alt="خريطة تفاعلية توضح أماكن تواجد الأدباء والكتاب الأعضاء في الاتحاد العراقي للكتّاب" style="display: none;">
+                    </div>
                 </section>
                 
             </main>
             
+            <button id="focus-mode-toggle" class="focus-mode-btn hidden drawn-btn" aria-label="وضع التركيز للقراءة الأدبية">
+                <i class="fas fa-search-plus"></i>
+            </button>
         </div>
-
-        <a href="join-page.html" class="write-now-btn">
-            انضم الآن
-            <i class="fas fa-feather-alt floating-quill"></i>
-        </a>
 
         <footer id="main-footer" class="hand-drawn-border">
              <div class="paper-fold bottom-right"></div> 
@@ -115,7 +138,7 @@
                 <div class="footer-section">
                     <h3><i class="fas fa-link"></i> روابط سريعة للكتّاب</h3>
                     <ul>
-                        <li><a href="latest_members.html">آخر الأدباء المنضمين</a></li>
+                        <li><a href="about.html">عن الاتحاد</a></li> 
                         <li><a href="join-page.html">تسجيل عضوية اتحاد الكتاب</a></li>
                         <li><a href="events.html">جدول الفعاليات الثقافية</a></li>
                     </ul>
