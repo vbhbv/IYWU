@@ -1,6 +1,6 @@
 /*======================================================================*/
-/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10.1"  */
-/* تم إصلاح مشكلة ظهور القائمة الجانبية (Sidebar) بشفافية وفي المنتصف    */
+/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10.2"  */
+/* تم تعزيز الخطوط المخصصة وإصلاح مشكلة قص النص على الهواتف.             */
 /*======================================================================*/
 
 /* 1. متغيرات الألوان والخطوط الأساسية */
@@ -78,7 +78,16 @@ body {
 
 /* 4. الخطوط وتأثيرات الحبر (Typography & Ink Bleed) */
 h1, h2, h3 {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading); /* Reem Kufi Fun */
+    /* 💥 تعزيز: للتأكد من استخدام الخط المخصص بقوة في العناوين */
+    font-weight: 700 !important; 
+    line-height: 1.3;
+}
+
+/* 💥 ضمان ظهور اسم الاتحاد في الـ Header بالخط الجميل */
+.main-header .logo-text {
+    font-family: var(--font-heading) !important;
+    font-size: 1.7rem; 
 }
 
 .ink-bleed-title {
@@ -226,7 +235,7 @@ h1, h2, h3 {
 
 
 /* ========================================================= */
-/* 💥💥 منطقة الإصلاح: القائمة الجانبية (Sidebar) 💥💥      */
+/* 8. القائمة الجانبية (Sidebar) - مُصححة للظهور الكامل         */
 /* ========================================================= */
 .sidebar-menu {
     position: fixed;
@@ -236,12 +245,12 @@ h1, h2, h3 {
     width: 100%;
     height: 100%;
     
-    /* 💥 التعديل الحاسم: خلفية داكنة صلبة */
+    /* خلفية داكنة صلبة */
     background-color: var(--color-ink-dark); 
     
     z-index: 10000;
     
-    /* 💥 التحريك للخارج (100% إلى اليمين في وضع RTL) */
+    /* التحريك للخارج (100% إلى اليمين في وضع RTL) */
     transform: translate3d(100%, 0, 0); 
     transition: transform 0.3s ease-out;
     
@@ -255,7 +264,7 @@ h1, h2, h3 {
 
 /* الكلاس الذي يُضاف عبر JavaScript لفتح القائمة */
 .sidebar-menu.active { 
-    /* 💥 التحريك للداخل (إظهار القائمة) */
+    /* التحريك للداخل (إظهار القائمة) */
     transform: translate3d(0, 0, 0);
 }
 
@@ -280,12 +289,9 @@ h1, h2, h3 {
     font-size: 2rem;
     cursor: pointer;
 }
-/* ========================================================= */
-/* 💥💥 نهاية منطقة الإصلاح 💥💥                              */
-/* ========================================================= */
 
 
-/* 8. زر "انضم الآن" العائم */
+/* 9. زر "انضم الآن" العائم */
 .write-now-btn {
     position: fixed;
     bottom: 30px; 
@@ -312,7 +318,7 @@ h1, h2, h3 {
     transform: rotate(15deg);
 }
 
-/* 9. الشبكات والتذييل (Grid & Footer) */
+/* 10. الشبكات والتذييل (Grid & Footer) */
 .vision-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -355,7 +361,7 @@ h1, h2, h3 {
     margin-top: 5px;
 }
 
-/* 10. شاشة التحميل */
+/* 11. شاشة التحميل */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -438,7 +444,7 @@ h1, h2, h3 {
 
 
 /*======================================================================*/
-/* 13. استجابة التصميم (Media Queries) */
+/* 13. استجابة التصميم (Media Queries) - تم تصحيح قص النص هنا ✍️ */
 /*======================================================================*/
 @media (max-width: 768px) {
     
@@ -477,4 +483,88 @@ h1, h2, h3 {
              repeating-linear-gradient(to bottom, var(--color-paper) 0px, var(--color-paper) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) calc(var(--paper-line-height) - 1px), rgba(var(--color-ink-light), 0.2) var(--paper-line-height));
         background-size: 100% 100%, 100% 100%, 100% var(--paper-line-height);
     }
+    
+    /* 💥💥 التصحيح الحاسم لعنوان H1 لتجنب القص والسماح بلف النص 💥💥 */
+    #hero .hero-content h1.ink-bleed-title,
+    .about-union-section h1.ink-bleed-title {
+        font-size: 2rem; /* تقليل حجم الخط الرئيسي */
+        white-space: normal; /* السماح للنص باللف بدلاً من البقاء في سطر واحد */
+        padding: 0; 
+        /* إلغاء الفلتر والتظليل على الهاتف لمنع التداخل والقص */
+        filter: none; 
+        text-shadow: none;
+    }
+}
+
+/*======================================================================*/
+/* 14. أنماط خاصة بصفحة "عن الاتحاد" (about.html) */
+/*======================================================================*/
+
+/* أنماط خاصة لقسم التعريف بالاتحاد */
+.about-union-section {
+    background-color: var(--color-paper);
+    padding: 40px;
+    margin-top: 50px;
+    border-top: 5px solid var(--color-accent);
+    border-bottom: 5px solid var(--color-accent);
+    filter: url(#rough-filter);
+}
+.union-intro-text {
+    font-size: 1.15rem;
+    line-height: 2.0;
+    margin-bottom: 30px;
+}
+.union-head-info {
+    display: flex;
+    flex-direction: column; /* ليتناسب مع الشاشات الصغيرة */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--color-ink-dark);
+    color: var(--color-paper);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.union-head-info i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--color-highlight);
+}
+.union-head-info div {
+    margin-right: 0;
+}
+.union-contact-links {
+    margin-top: 30px;
+    text-align: center;
+}
+.union-contact-links a {
+    display: block; /* لضمان ظهور الروابط بشكل جيد على الهاتف */
+    background-color: var(--color-ink-light);
+    color: var(--color-paper);
+    padding: 10px 20px;
+    margin: 10px auto;
+    width: 80%; /* تحديد عرض معقول */
+    max-width: 300px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.union-contact-links a:hover {
+    background-color: var(--color-accent);
+}
+
+/* أنماط إضافية لشبكة الرؤية والرسالة في صفحة "عنّا" */
+.vision-grid-about {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.vision-card-about {
+    border: 1px solid var(--color-ink-light);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--color-paper);
+    box-shadow: 2px 2px 0 var(--color-ink-light);
 }
