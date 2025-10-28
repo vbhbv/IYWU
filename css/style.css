@@ -1,6 +1,6 @@
 /*======================================================================*/
-/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10.2"  */
-/* تم تعزيز الخطوط المخصصة وإصلاح مشكلة قص النص على الهواتف.             */
+/* CSS لملف المحبرة الرقمية (Style.css) - تصميم "الورقة المخطوطة V10.3"  */
+/* تم تعزيز الخطوط المخصصة (Reem Kufi Fun) وإضافة أنماط الخريطة.         */
 /*======================================================================*/
 
 /* 1. متغيرات الألوان والخطوط الأساسية */
@@ -78,7 +78,7 @@ body {
 
 /* 4. الخطوط وتأثيرات الحبر (Typography & Ink Bleed) */
 h1, h2, h3 {
-    font-family: var(--font-heading); /* Reem Kufi Fun */
+    font-family: var(--font-heading); 
     /* 💥 تعزيز: للتأكد من استخدام الخط المخصص بقوة في العناوين */
     font-weight: 700 !important; 
     line-height: 1.3;
@@ -444,7 +444,7 @@ h1, h2, h3 {
 
 
 /*======================================================================*/
-/* 13. استجابة التصميم (Media Queries) - تم تصحيح قص النص هنا ✍️ */
+/* 13. استجابة التصميم (Media Queries) - تصحيح H1 والخطوط  ✍️ */
 /*======================================================================*/
 @media (max-width: 768px) {
     
@@ -487,12 +487,15 @@ h1, h2, h3 {
     /* 💥💥 التصحيح الحاسم لعنوان H1 لتجنب القص والسماح بلف النص 💥💥 */
     #hero .hero-content h1.ink-bleed-title,
     .about-union-section h1.ink-bleed-title {
-        font-size: 2rem; /* تقليل حجم الخط الرئيسي */
-        white-space: normal; /* السماح للنص باللف بدلاً من البقاء في سطر واحد */
+        font-size: 2rem; 
+        white-space: normal; 
         padding: 0; 
-        /* إلغاء الفلتر والتظليل على الهاتف لمنع التداخل والقص */
         filter: none; 
         text-shadow: none;
+    }
+    /* تصغير حجم الخط في رأس الصفحة ليناسب الشاشات الصغيرة */
+    .main-header .logo-text {
+        font-size: 1.3rem !important; 
     }
 }
 
@@ -516,7 +519,7 @@ h1, h2, h3 {
 }
 .union-head-info {
     display: flex;
-    flex-direction: column; /* ليتناسب مع الشاشات الصغيرة */
+    flex-direction: column; 
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -539,12 +542,12 @@ h1, h2, h3 {
     text-align: center;
 }
 .union-contact-links a {
-    display: block; /* لضمان ظهور الروابط بشكل جيد على الهاتف */
+    display: block; 
     background-color: var(--color-ink-light);
     color: var(--color-paper);
     padding: 10px 20px;
     margin: 10px auto;
-    width: 80%; /* تحديد عرض معقول */
+    width: 80%; 
     max-width: 300px;
     border-radius: 5px;
     text-decoration: none;
@@ -567,4 +570,80 @@ h1, h2, h3 {
     border-radius: 10px;
     background-color: var(--color-paper);
     box-shadow: 2px 2px 0 var(--color-ink-light);
+}
+
+/*======================================================================*/
+/* 15. أنماط خريطة أصوات المدن الأدبية الوهمية */
+/*======================================================================*/
+
+.map-style-container {
+    position: relative;
+    width: 100%;
+    height: 500px; 
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--color-paper);
+    border: 3px solid var(--color-ink-light);
+}
+
+.map-outline {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* خلفية مبسطة لخريطة العراق، استبدلها بصورة فعلية أو رسم SVG لاحقاً */
+    background-color: #ECECEC; 
+    background-position: center;
+    background-size: cover;
+    opacity: 0.8;
+}
+
+.city-point {
+    position: absolute;
+    width: 65px; /* زيادة حجم النقطة قليلاً لسهولة النقر */
+    height: 65px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-paper);
+    cursor: pointer;
+    box-shadow: 0 0 0 5px rgba(142, 68, 173, 0.4); 
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.8rem;
+    z-index: 20;
+    filter: url(#rough-filter); /* إضافة تأثير الرسم */
+}
+
+.city-point i {
+    font-size: 1.5rem; /* زيادة حجم الأيقونة */
+    margin-bottom: 2px;
+}
+.city-point .city-name {
+    font-family: var(--font-heading); /* استخدام الخط الجميل لاسم المدينة */
+    font-size: 0.8rem;
+}
+
+.city-point:hover {
+    transform: scale(1.1);
+    background-color: var(--color-highlight);
+    box-shadow: 0 0 0 7px rgba(243, 156, 18, 0.6);
+}
+
+/* تحديد المواقع الوهمية للنقاط داخل حاوية الخريطة (Map Outline) */
+/* هذه إحداثيات تعتمد على وضعية الخريطة العراقية التقريبية */
+.city-baghdad { top: 40%; right: 45%; } 
+.city-mosul   { top: 15%; right: 30%; } 
+.city-basra   { top: 75%; right: 65%; } 
+.city-erbil   { top: 10%; right: 15%; } 
+.city-najaf   { top: 60%; right: 55%; } 
+
+.map-caption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-ink-light);
+    margin-top: 15px;
 }
