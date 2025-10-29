@@ -1,0 +1,5 @@
+# robots.txt for https://github.com/vbhbv/IYWU/
+
+# السماح لجميع برامج الزحف (User-agents) بالوصول
+User-agent: *
+Allow: /
