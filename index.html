@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع</title>
     
@@ -9,7 +9,7 @@
     <meta name="keywords" content="اتحاد الأدباء والكتاب العراقيين, الثقافة والإبداع, أدب, كتابة, فعاليات ثقافية, انضمام للكتاب, شعراء العراق, أدباء">
     <meta name="author" content="اتحاد الأدباء والكتاب العراقيين للثقافة والإبداع">
     
-    <link href="https://fonts.googleapis.com/css2?family=vazirmatn:wght400;700&family=reem+kufi+fun:wght400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -19,12 +19,12 @@
 
     <svg width="0" height="0" style="position: absolute;">
       <filter id="rough-filter">
-        <feturbulence type="fractalnoise" basefrequency="0.05" numoctaves="3" result="noise" />
-        <fedisplacementmap in="sourcegraphic" in2="noise" scale="3" xchannelselector="r" ychannelselector="g" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
       </filter>
       <filter id="ink-bleed">
-        <femorphology operator="dilate" radius="1" in="sourcealpha" result="dilated"/>
-        <fecomposite operator="in" in="dilated" in2="sourcegraphic"/>
+        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
+        <feComposite operator="in" in="DILATED" in2="SourceGraphic"/>
       </filter>
     </svg>
     
@@ -74,14 +74,14 @@
                 <section id="hero" class="card-section hand-drawn-border reveal-element">
                     <div class="paper-fold top-left"></div> 
                     <div class="hero-content">
-                        <div class="handwritten-title-container">
+                         <div class="handwritten-title-container">
                              <i id="quill-pen-mover" class="fas fa-quill pen-mover-icon"></i>
                             <h1 class="ink-bleed-title handwritten-animation" data-text="مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا">
                                 مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا
                             </h1>
                         </div>
                         
-                        <p id="member-count-display" class="sub-heading">
+                         <p id="member-count-display" class="sub-heading">
                             نفتخر بـ <span id="dynamic-member-count" data-initial-count="450" class="member-counter">450</span> كاتباً وأديباً نشطاً.
                         </p>
                         
@@ -97,16 +97,16 @@
                         📚 أبرز الأعمال الأدبية لهذا الشهر
                      </h2>
                      <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
-                        تم اختيار هذه الأعمال من قبل لجنة الاتحاد للمراجعة.
+                        يتم جلب هذه الأعمال ديناميكياً من خادم الاتحاد (Railway API).
                      </p>
                     
                     <div id="featured-works-gallery" class="gallery-container">
                         </div>
                     
-                    <div style="text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 15px;"> <a href="magazine.html" class="btn secondary-btn drawn-btn">شاهد المزيد في المجلة الأدبية <i class="fas fa-arrow-left"></i></a> 
-                         <a href="mjoulbooks.html" class="btn primary-btn drawn-btn">كتب مجول شعلان الحيالي <i class="fas fa-book-open"></i></a> </div>
+                    <div style="text-align: center; margin-top: 30px;">
+                         <a href="magazine.html" class="btn secondary-btn drawn-btn">شاهد المزيد في المجلة الأدبية <i class="fas fa-arrow-left"></i></a> 
+                    </div>
                 </section>
-
 
                 <section id="vision" class="padded-section reveal-element">
                     <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">✨ الرؤية: دعم الأدباء والكتاب الشباب</h2>
