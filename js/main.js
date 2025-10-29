@@ -6,20 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. إعدادات API (الاعتماد على المسار الجذري الحالي)
     // =================================================================
     
-    // ⚠️ تم إزالة الرابط المباشر. هذا الكود سيعمل بشكل صحيح إذا قمت بنشر
-    // الواجهة الأمامية على نفس نطاق خادم FastAPI أو استخدمت Reverse Proxy.
-    // للحصول على أفضل توافق، يجب تغيير هذا إلى رابط Railway Public URL
-    // (مثل https://your-app-name.up.railway.app) إذا كانت الواجهة الأمامية
-    // تعمل على نطاق مختلف.
+    // ⚠️ ملاحظة: يجب تعديل هذا المتغير ليحتوي على رابط FastAPI العام
+    // (مثل https://your-api-name.up.railway.app) لكي يعمل الموقع المنشور على GitHub Pages.
     const RAILWAY_API_BASE = ''; // استخدام المسار النسبي (مثل /api/auth/login)
     
-    const AUTH_API = `${RAILWAY_API_BASE}/api/auth/login`; 
+    // تم إزالة AUTH_API
     const COUNT_API = `${RAILWAY_API_BASE}/api/stats/member-count`;
     const WORKS_API = `${RAILWAY_API_BASE}/api/works/featured`;
     const AUTHOR_PREVIEW_API = `${RAILWAY_API_BASE}/api/authors/preview`;
     
     // =================================================================
-    // 2. تفعيل التفاعلات الأساسية (الأيقونات المعطلة)
+    // 2. تفعيل التفاعلات الأساسية
     // =================================================================
 
     const loadingScreen = document.getElementById('loading-screen');
@@ -29,13 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const fullMenu = document.getElementById('full-menu');
     const closeMenuBtn = document.getElementById('close-menu-btn');
-
-    const loginToggle = document.getElementById('login-toggle');
-    const loginModal = document.getElementById('login-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const loginForm = document.getElementById('login-form');
-    const loginMessage = document.getElementById('login-message');
-
+    
+    // تم إزالة جميع المتغيرات المتعلقة بالتسجيل (loginToggle, loginModal, إلخ)
 
     // A. وظيفة إخفاء شاشة التحميل
     window.addEventListener('load', () => {
@@ -57,23 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // C. تفعيل زر تسجيل الدخول و النافذة المنبثقة (Modal)
-    if (loginToggle && loginModal && closeModalBtn) {
-        loginToggle.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-        });
-        closeModalBtn.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-        });
-        // إغلاق عند النقر خارج النافذة
-        window.addEventListener('click', (event) => {
-            if (event.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-    }
-
-    // D. تفعيل زر الوضع الليلي (Dark Mode)
+    // C. تفعيل زر الوضع الليلي (Dark Mode) (كانت D سابقاً)
     function toggleDarkMode() {
         body.classList.toggle('dark-mode');
         // حفظ التفضيل في التخزين المحلي
@@ -99,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleDarkMode(); // تفعيل الوضع الداكن إذا كان مفضلاً
         }
     }
+
+    // تم إزالة القسم C بالكامل (الذي كان خاصاً بتفعيل المودال ومنطق تسجيل الدخول)
 
 
     // =================================================================
@@ -170,70 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Error fetching featured works:", error);
+            // لاحظ أن هذا الخطأ يظهر لك باستمرار بسبب مشكلة النطاق
             gallery.innerHTML = '<p class="error-message" style="text-align: center;">تعذر تحميل الأعمال المميزة. تحقق من اتصال API.</p>';
         }
     }
     fetchAndRenderFeaturedWorks();
 
-
-    // C. منطق المصادقة وتسجيل الدخول (AUTH)
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            loginMessage.style.display = 'none';
-            loginMessage.classList.remove('success-message');
-            loginMessage.classList.remove('error-message');
-
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-
-            // بناء بيانات النموذج بصيغة x-www-form-urlencoded كما يتوقعها FastAPI
-            const formBody = new URLSearchParams();
-            formBody.append('username', email);
-            formBody.append('password', password);
-
-            try {
-                const response = await fetch(AUTH_API, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: formBody
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    // نجاح تسجيل الدخول - حفظ الرمز (Token)
-                    localStorage.setItem('access_token', result.access_token);
-                    loginMessage.textContent = 'تم تسجيل الدخول بنجاح! جارِ التوجيه...';
-                    loginMessage.classList.add('success-message');
-                    loginMessage.style.display = 'block';
-                    
-                    // إغلاق النافذة بعد ثوانٍ (يمكنك إعادة تحميل الصفحة أو التوجيه)
-                    setTimeout(() => {
-                        loginModal.style.display = 'none';
-                        // تحديث واجهة المستخدم (تغيير أيقونة المستخدم إلى أيقونة بروفايل مثلاً)
-                        // window.location.reload(); 
-                    }, 1500);
-
-                } else {
-                    // فشل تسجيل الدخول
-                    loginMessage.textContent = result.detail || 'فشل تسجيل الدخول. تحقق من البيانات.';
-                    loginMessage.classList.add('error-message');
-                    loginMessage.style.display = 'block';
-                }
-
-            } catch (error) {
-                console.error('Login error:', error);
-                loginMessage.textContent = 'حدث خطأ في الاتصال بالخادم.';
-                loginMessage.classList.add('error-message');
-                loginMessage.style.display = 'block';
-            }
-        });
-    }
-
-    // D. تفعيل خريطة المدن التفاعلية (Map Tooltip)
+    // C. تفعيل خريطة المدن التفاعلية (Map Tooltip) (كانت D سابقاً)
     const cityPoints = document.querySelectorAll('.city-point');
     const tooltip = document.getElementById('micro-profile-tooltip');
     const authorNameTooltip = document.querySelector('.author-name-tooltip');
