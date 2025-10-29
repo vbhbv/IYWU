@@ -20,7 +20,7 @@
     <svg width="0" height="0" style="position: absolute;">
       <filter id="rough-filter">
         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" ychannelselector="G" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
       </filter>
       <filter id="ink-bleed">
         <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
@@ -71,37 +71,16 @@
                 <section id="hero" class="card-section hand-drawn-border reveal-element">
                     <div class="paper-fold top-left"></div> 
                     <div class="hero-content">
-                         <div class="handwritten-title-container">
-                             <i id="quill-pen-mover" class="fas fa-quill pen-mover-icon"></i>
-                            <h1 class="ink-bleed-title handwritten-animation" data-text="مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا">
-                                مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا
-                            </h1>
-                        </div>
-                        
-                         <p id="member-count-display" class="sub-heading">
-                            نفتخر بـ <span id="dynamic-member-count" data-initial-count="450" class="member-counter">450</span> كاتباً وأديباً نشطاً.
+                        <h1 class="ink-bleed-title handwritten-animation" data-text="مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا">
+                            مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا
+                        </h1>
+                        <p id="member-count-display" class="sub-heading">
+                            في كل سطر يكمن جوهر الحكايات القديمة والحديثة.
                         </p>
-                        
                         <div class="hero-actions">
                             <a href="latest_members.html" class="btn primary-btn drawn-btn"><i class="fas fa-arrow-left"></i> اكتشف الأدباء المنضمين</a>
                             <a href="join-page.html" class="btn secondary-btn drawn-btn seal-effect">انضم إلى الاتحاد</a> 
                         </div>
-                    </div>
-                </section>
-                
-                <section id="featured-works-section" class="padded-section reveal-element">
-                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation" data-text="📚 كتب مجول شعلان الحيالي">
-                        📚 كتب مجول شعلان الحيالي
-                     </h2>
-                     <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
-                        يتم جلب هذه الأعمال ديناميكياً من خادم الاتحاد (Railway API).
-                     </p>
-                    
-                    <div id="featured-works-gallery" class="gallery-container">
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 30px;">
-                         <a href="booksmjoul.html" class="btn secondary-btn drawn-btn">تصفح جميع كتب مجول شعلان الحيالي <i class="fas fa-book-open"></i></a> 
                     </div>
                 </section>
 
@@ -126,7 +105,48 @@
                     </div>
                 </section>
                 
-                </main>
+                <section id="iraqi-map" class="padded-section reveal-element">
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">خريطة أصوات المدن العراقية الأدبية</h2>
+                    <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
+                        انقر على المدن لاكتشاف الأدباء والأصوات الجديدة.
+                    </p>
+                
+                    <div id="interactive-map-container" class="sketchy-area map-style-container hand-drawn-border">
+                        
+                        <div class="map-outline" style="background-image: url('images/iraq-map-sketch.png');" aria-label="خريطة العراق الأدبية">
+                            
+                            <a href="city-profile.html?city=baghdad" class="city-point city-baghdad" data-city="بغداد">
+                                <i class="fas fa-feather-alt"></i>
+                                <span class="city-name">بغداد</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=mosul" class="city-point city-mosul" data-city="الموصل">
+                                <i class="fas fa-scroll"></i>
+                                <span class="city-name">الموصل</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=basra" class="city-point city-basra" data-city="البصرة">
+                                <i class="fas fa-ship"></i>
+                                <span class="city-name">البصرة</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=erbil" class="city-point city-erbil" data-city="أربيل">
+                                <i class="fas fa-mountain"></i>
+                                <span class="city-name">أربيل</span>
+                            </a>
+                            
+                            <a href="city-profile.html?city=najaf" class="city-point city-najaf" data-city="النجف">
+                                <i class="fas fa-book-reader"></i>
+                                <span class="city-name">النجف</span>
+                            </a>
+                
+                        </div>
+                
+                        <p class="map-caption">(تمثل النقاط أعلاه مراكز أدبية وهمية للأعضاء النشطين في الاتحاد.)</p>
+                    </div>
+                </section>
+                
+            </main>
             
             <button id="focus-mode-toggle" class="focus-mode-btn hidden drawn-btn" aria-label="وضع التركيز للقراءة الأدبية">
                 <i class="fas fa-search-plus"></i>
