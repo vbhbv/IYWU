@@ -48,6 +48,9 @@
                     </button>
                 </nav>
                 <div class="controls">
+                    <button id="login-toggle" class="icon-btn sketch-icon" aria-label="تسجيل الدخول لأعضاء الاتحاد">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
                     <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="تغيير إلى وضع القراءة الداكن">
                         <i class="fas fa-moon"></i>
                     </button>
@@ -71,18 +74,40 @@
                 <section id="hero" class="card-section hand-drawn-border reveal-element">
                     <div class="paper-fold top-left"></div> 
                     <div class="hero-content">
-                        <h1 class="ink-bleed-title handwritten-animation" data-text="مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا">
-                            مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا
-                        </h1>
+                        <div class="handwritten-title-container">
+                             <i id="quill-pen-mover" class="fas fa-quill pen-mover-icon"></i>
+                            <h1 class="ink-bleed-title handwritten-animation" data-text="مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا">
+                                مركز الكتابة والأدب في العراق: فصل جديد يبدأ هنا
+                            </h1>
+                        </div>
+                        
                         <p id="member-count-display" class="sub-heading">
-                            في كل سطر يكمن جوهر الحكايات القديمة والحديثة.
+                            نفتخر بـ <span id="dynamic-member-count" data-initial-count="450" class="member-counter">450</span> كاتباً وأديباً نشطاً.
                         </p>
+                        
                         <div class="hero-actions">
                             <a href="latest_members.html" class="btn primary-btn drawn-btn"><i class="fas fa-arrow-left"></i> اكتشف الأدباء المنضمين</a>
                             <a href="join-page.html" class="btn secondary-btn drawn-btn seal-effect">انضم إلى الاتحاد</a> 
                         </div>
                     </div>
                 </section>
+                
+                <section id="featured-works-section" class="padded-section reveal-element">
+                     <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation" data-text="📚 أبرز الأعمال الأدبية لهذا الشهر">
+                        📚 أبرز الأعمال الأدبية لهذا الشهر
+                     </h2>
+                     <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
+                        تم اختيار هذه الأعمال من قبل لجنة الاتحاد للمراجعة.
+                     </p>
+                    
+                    <div id="featured-works-gallery" class="gallery-container">
+                        </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                         <a href="magazine.html" class="btn secondary-btn drawn-btn">شاهد المزيد في المجلة الأدبية <i class="fas fa-arrow-left"></i></a> 
+                    </div>
+                </section>
+
 
                 <section id="vision" class="padded-section reveal-element">
                     <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">✨ الرؤية: دعم الأدباء والكتاب الشباب</h2>
@@ -106,43 +131,49 @@
                 </section>
                 
                 <section id="iraqi-map" class="padded-section reveal-element">
-                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation">خريطة أصوات المدن العراقية الأدبية</h2>
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation" data-text="خريطة أصوات المدن العراقية الأدبية">
+                        خريطة أصوات المدن العراقية الأدبية
+                    </h2>
                     <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
-                        انقر على المدن لاكتشاف الأدباء والأصوات الجديدة.
+                        انقر على المدن لاكتشاف الأدباء والأصوات الجديدة (معلومات ديناميكية).
                     </p>
                 
                     <div id="interactive-map-container" class="sketchy-area map-style-container hand-drawn-border">
                         
                         <div class="map-outline" style="background-image: url('images/iraq-map-sketch.png');" aria-label="خريطة العراق الأدبية">
                             
-                            <a href="city-profile.html?city=baghdad" class="city-point city-baghdad" data-city="بغداد">
+                            <a href="city-profile.html?city=baghdad" class="city-point city-baghdad" data-city="بغداد" data-author-id="201">
                                 <i class="fas fa-feather-alt"></i>
                                 <span class="city-name">بغداد</span>
                             </a>
                             
-                            <a href="city-profile.html?city=mosul" class="city-point city-mosul" data-city="الموصل">
+                            <a href="city-profile.html?city=mosul" class="city-point city-mosul" data-city="الموصل" data-author-id="202">
                                 <i class="fas fa-scroll"></i>
                                 <span class="city-name">الموصل</span>
                             </a>
                             
-                            <a href="city-profile.html?city=basra" class="city-point city-basra" data-city="البصرة">
+                            <a href="city-profile.html?city=basra" class="city-point city-basra" data-city="البصرة" data-author-id="203">
                                 <i class="fas fa-ship"></i>
                                 <span class="city-name">البصرة</span>
                             </a>
                             
-                            <a href="city-profile.html?city=erbil" class="city-point city-erbil" data-city="أربيل">
+                            <a href="city-profile.html?city=erbil" class="city-point city-erbil" data-city="أربيل" data-author-id="204">
                                 <i class="fas fa-mountain"></i>
                                 <span class="city-name">أربيل</span>
                             </a>
                             
-                            <a href="city-profile.html?city=najaf" class="city-point city-najaf" data-city="النجف">
+                            <a href="city-profile.html?city=najaf" class="city-point city-najaf" data-city="النجف" data-author-id="205">
                                 <i class="fas fa-book-reader"></i>
                                 <span class="city-name">النجف</span>
                             </a>
-                
+                        </div>
+                        
+                        <div id="micro-profile-tooltip" class="micro-profile-tooltip" style="display: none;">
+                            <p class="author-name-tooltip"></p>
+                            <p class="author-stats-tooltip"></p>
                         </div>
                 
-                        <p class="map-caption">(تمثل النقاط أعلاه مراكز أدبية وهمية للأعضاء النشطين في الاتحاد.)</p>
+                        <p class="map-caption">(تمثل النقاط أعلاه مراكز أدبية يتم تحديث بياناتها ديناميكياً من الاتحاد.)</p>
                     </div>
                 </section>
                 
@@ -151,6 +182,30 @@
             <button id="focus-mode-toggle" class="focus-mode-btn hidden drawn-btn" aria-label="وضع التركيز للقراءة الأدبية">
                 <i class="fas fa-search-plus"></i>
             </button>
+        </div>
+
+        <div id="login-modal" class="login-modal" style="display: none;">
+            <div class="modal-content hand-drawn-effect">
+                <button id="close-modal-btn" class="close-btn sketch-icon"><i class="fas fa-times"></i></button>
+                <h2 class="ink-bleed-title" style="text-align: center;">دخول الأعضاء</h2>
+                
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">البريد الإلكتروني:</label>
+                        <input type="email" id="login-email" required class="input-paper-style" placeholder="بريدك الإلكتروني المسجل">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">كلمة المرور:</label>
+                        <input type="password" id="login-password" required class="input-paper-style" placeholder="كلمة المرور">
+                    </div>
+                    <button type="submit" class="btn primary-btn drawn-btn full-width-btn">تسجيل الدخول <i class="fas fa-sign-in-alt"></i></button>
+                    <p id="login-message" class="error-message" style="display: none; text-align: center;"></p>
+                </form>
+                
+                <p class="switch-auth-link" style="text-align: center; margin-top: 15px;">
+                    <a href="join-page.html" class="drawn-link">هل أنت عضو جديد؟ انضم الآن</a>
+                </p>
+            </div>
         </div>
 
         <footer id="main-footer" class="hand-drawn-border">
