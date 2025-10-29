@@ -20,7 +20,7 @@
     <svg width="0" height="0" style="position: absolute;">
       <filter id="rough-filter">
         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" ychannelselector="G" />
       </filter>
       <filter id="ink-bleed">
         <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
@@ -98,10 +98,10 @@
                      </p>
                     
                     <div id="featured-works-gallery" class="gallery-container">
-                        </div>
+                    </div>
                     
                     <div style="text-align: center; margin-top: 30px;">
-                        <a href="booksmjoul.html" class="btn secondary-btn drawn-btn">تصفح جميع كتب مجول شعلان الحيالي <i class="fas fa-book-open"></i></a> 
+                         <a href="booksmjoul.html" class="btn secondary-btn drawn-btn">تصفح جميع كتب مجول شعلان الحيالي <i class="fas fa-book-open"></i></a> 
                     </div>
                 </section>
 
@@ -126,60 +126,13 @@
                     </div>
                 </section>
                 
-                <section id="iraqi-map" class="padded-section reveal-element">
-                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation" data-text="خريطة أصوات المدن العراقية الأدبية">
-                        خريطة أصوات المدن العراقية الأدبية
-                    </h2>
-                    <p class="sub-heading" style="text-align: center; margin-bottom: 20px;">
-                        انقر على المدن لاكتشاف الأدباء والأصوات الجديدة (معلومات ديناميكية).
-                    </p>
-                
-                    <div id="interactive-map-container" class="sketchy-area map-style-container hand-drawn-border">
-                        
-                        <div class="map-outline" style="background-image: url('images/iraq-map-sketch.png');" aria-label="خريطة العراق الأدبية">
-                            
-                            <a href="city-profile.html?city=baghdad" class="city-point city-baghdad" data-city="بغداد" data-author-id="201">
-                                <i class="fas fa-feather-alt"></i>
-                                <span class="city-name">بغداد</span>
-                            </a>
-                            
-                            <a href="city-profile.html?city=mosul" class="city-point city-mosul" data-city="الموصل" data-author-id="202">
-                                <i class="fas fa-scroll"></i>
-                                <span class="city-name">الموصل</span>
-                            </a>
-                            
-                            <a href="city-profile.html?city=basra" class="city-point city-basra" data-city="البصرة" data-author-id="203">
-                                <i class="fas fa-ship"></i>
-                                <span class="city-name">البصرة</span>
-                            </a>
-                            
-                            <a href="city-profile.html?city=erbil" class="city-point city-erbil" data-city="أربيل" data-author-id="204">
-                                <i class="fas fa-mountain"></i>
-                                <span class="city-name">أربيل</span>
-                            </a>
-                            
-                            <a href="city-profile.html?city=najaf" class="city-point city-najaf" data-city="النجف" data-author-id="205">
-                                <i class="fas fa-book-reader"></i>
-                                <span class="city-name">النجف</span>
-                            </a>
-                        </div>
-                        
-                        <div id="micro-profile-tooltip" class="micro-profile-tooltip" style="display: none;">
-                            <p class="author-name-tooltip"></p>
-                            <p class="author-stats-tooltip"></p>
-                        </div>
-                
-                        <p class="map-caption">(تمثل النقاط أعلاه مراكز أدبية يتم تحديث بياناتها ديناميكياً من الاتحاد.)</p>
-                    </div>
-                </section>
-                
-            </main>
+                </main>
             
             <button id="focus-mode-toggle" class="focus-mode-btn hidden drawn-btn" aria-label="وضع التركيز للقراءة الأدبية">
                 <i class="fas fa-search-plus"></i>
             </button>
         </div>
-        
+
         <footer id="main-footer" class="hand-drawn-border">
              <div class="paper-fold bottom-right"></div> 
             <div class="footer-grid">
