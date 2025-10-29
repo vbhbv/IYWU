@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مؤلفات وكتب مجول شعلان الحيالي - اتحاد الأدباء والكتاب العراقيين</title>
+    
+    <meta name="description" content="مكتبة إلكترونية تعرض مؤلفات الكاتب مجول شعلان الحيالي، بما في ذلك الفلسفة الأوروبية، المدينة الفاضلة الحديثة، وبعثرات فلسفية.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Reem+Kufi+Fun:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css"> 
+    
+    <style>
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+        .book-card {
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* ظل أكثر وضوحًا */
+            transition: transform 0.3s ease;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .book-card h3 {
+            font-family: 'Reem Kufi Fun', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #4a2f26; 
+        }
+        .book-card p {
+            font-size: 0.95rem;
+            min-height: 45px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .download-btn {
+            background-color: #38a169; /* لون أخضر للتيليجرام */
+            border-color: #2f855a;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .download-btn i {
+            margin-left: 8px;
+        }
+        .author-bio {
+            background-color: #fff9e6; /* لون ورقي فاتح */
+            border: 1px solid #e0c8a8;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .author-bio h2 {
+            margin-top: 0;
+            color: #4a2f26;
+        }
+        .contact-info {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #f7f7f7;
+            border-top: 2px dashed #ccc;
+        }
+    </style>
+</head>
+<body id="bookspage">
+    
+    <svg width="0" height="0" style="position: absolute;">
+      <filter id="rough-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ink-bleed">
+        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="DILATED"/>
+        <feComposite operator="in" in="DILATED" in2="SourceGraphic"/>
+      </filter>
+    </svg>
+    
+    <div id="page-container"> 
+        <div id="content-wrap"> 
+
+            <header class="main-header hand-drawn-effect">
+                <div class="logo-text"><a href="index.html" style="color: inherit; text-decoration: none;">اتحاد الأدباء والكتاب العراقيين</a></div>
+                <nav id="main-nav" class="header-nav">
+                    <a href="index.html" class="icon-btn sketch-icon" aria-label="العودة للصفحة الرئيسية"><i class="fas fa-home"></i></a>
+                </nav>
+                <div class="controls">
+                    <button id="dark-mode-toggle" class="icon-btn sketch-icon" aria-label="تغيير إلى وضع القراءة الداكن">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <main class="content-wrapper">
+                
+                <section id="books-hero" class="card-section hand-drawn-border reveal-element">
+                    <div class="paper-fold top-left"></div> 
+                    <div class="hero-content text-center">
+                        <h1 class="ink-bleed-title handwritten-animation" data-text="مكتبة الكاتب: مجول شعلان الحيالي">
+                            مكتبة الكاتب: مجول شعلان الحيالي
+                        </h1>
+                        <p class="sub-heading">
+                            "في كل كتاب فلسفة، تكمن عوالم جديدة تحتاج منك إلى اكتشاف."
+                        </p>
+                    </div>
+                </section>
+                
+                <section id="author-bio" class="padded-section reveal-element">
+                    <div class="author-bio hand-drawn-effect">
+                        <h2 class="drawn-underline" style="margin-bottom: 15px;">🖋️ نبذة عن الكاتب مجول شعلان الحيالي</h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8;">
+                            كاتب وناقد فكري في عدة مجالات علمية وفلسفية. هو مؤسس **مجلة الرافد الثقافية**، ومؤلف لعدة كتب فلسفية عميقة تهدف إلى تحليل بنية العقل العربي وتفكيك أنماط التفكير الجمعي. يساهم الكاتب بفعالية في العديد من المسابقات والفعاليات الثقافية. يعتبر مجول شعلان الحيالي صرخة وعي ضد التفاهة، ويسعى لتحفيز القارئ على **التفكير النقدي والحر** والخروج من أسر الموروثات الجامدة.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="published-works" class="padded-section reveal-element">
+                    <h2 class="section-title drawn-underline ink-bleed-title handwritten-animation" style="text-align: center;">قائمة الإصدارات المتاحة للتحميل عبر التيليجرام</h2>
+                    
+                    <div class="book-grid">
+                        
+                        <div class="book-card hand-drawn-effect">
+                            <h3>كتاب الفلسفة الأوروبية</h3>
+                            <p>رحلة تحليلية تستعرض تطور الفكر الفلسفي الأوروبي، من الجذور اليونانية حتى المدارس النقدية الحديثة.</p>
+                            <a href="https://t.me/iiollr" target="_blank" class="btn secondary-btn drawn-btn download-btn">
+                                <i class="fab fa-telegram-plane"></i> تحميل الكتاب
+                            </a>
+                        </div>
+
+                        <div class="book-card hand-drawn-effect">
+                            <h3>كتاب المدينة الفاضلة الحديثة</h3>
+                            <p>ليست مجرد طوباوية، بل محاولة عقلانية لصياغة واقع بديل يتجاوز ارتباك الإنسان المعاصر في الزحام الرقمي.</p>
+                            <a href="https://t.me/iiollr" target="_blank" class="btn secondary-btn drawn-btn download-btn">
+                                <i class="fab fa-telegram-plane"></i> تحميل الكتاب
+                            </a>
+                        </div>
+                        
+                        <div class="book-card hand-drawn-effect">
+                            <h3>كتاب بعثرات فلسفية</h3>
+                            <p>تأملات حرة ومقالات نقدية تبعثر الأفكار السائدة وتعيد ترتيبها في وعي جديد ومختلف.</p>
+                            <a href="https://t.me/iiollr" target="_blank" class="btn secondary-btn drawn-btn download-btn">
+                                <i class="fab fa-telegram-plane"></i> تحميل الكتاب
+                            </a>
+                        </div>
+
+                        <div class="book-card hand-drawn-effect">
+                            <h3>كتاب الدليل في ضل التضليل</h3>
+                            <p>مرشد للقارئ في متاهات المعلومات المغلوطة، يقدم أدوات التفكير النقدي للوصول إلى الحقيقة وسط الضجيج.</p>
+                            <a href="https://t.me/iiollr" target="_blank" class="btn secondary-btn drawn-btn download-btn">
+                                <i class="fab fa-telegram-plane"></i> تحميل الكتاب
+                            </a>
+                        </div>
+                        
+                        <div class="book-card hand-drawn-effect">
+                            <h3>كتاب تأملات في الحب الإلكتروني</h3>
+                            <p>تحليل سوسيولوجي ونفسي للعلاقات العاطفية التي تولد وتنمو وتموت في شبكات التواصل الاجتماعي.</p>
+                            <a href="https://t.me/iiollr" target="_blank" class="btn secondary-btn drawn-btn download-btn">
+                                <i class="fab fa-telegram-plane"></i> تحميل الكتاب
+                            </a>
+                        </div>
+                        
+                    </div>
+                </section>
+                
+                <section id="contact-mjoul" class="reveal-element">
+                    <div class="contact-info">
+                        <h3 style="color: #4a2f26;"><i class="fas fa-envelope-open-text"></i> للتواصل والاستفسارات الإدارية</h3>
+                        <p style="font-size: 1.1rem; margin-top: 10px;">
+                            يمكنكم التواصل مع إدارة اتحاد الأدباء والكتاب العراقيين عبر البريد الإلكتروني:
+                            <br>
+                            <a href="mailto:IYWUIRAQ@gmail.com" style="font-weight: bold; color: #cc5500;">الإدارة: IYWUIRAQ@gmail.com</a>
+                        </p>
+                    </div>
+                </section>
+                
+            </main>
+            
+        </div>
+
+        <footer id="main-footer" class="hand-drawn-border">
+             <div class="paper-fold bottom-right"></div> 
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> مقر الاتحاد الأدبي</h3>
+                    <p>صوت الشباب الأدبي في نينوى، العراق.</p>
+                    <p>&copy; 2025 حقوق النشر محفوظه.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> روابط سريعة للكتّاب</h3>
+                    <ul>
+                        <li><a href="about.html">عن الاتحاد</a></li> 
+                        <li><a href="latest_members.html">آخر الأدباء المنضمين</a></li>
+                        <li><a href="join-page.html">تسجيل عضوية اتحاد الكتاب</a></li>
+                        <li><a href="events.html">جدول الفعاليات الثقافية</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i> تواصل مع الأدباء</h3>
+                    <a href="magazine.html" class="social-link"><i class="fas fa-newspaper"></i> مجلة الرافد الأدبية</a>
+                    <a href="https://t.me/iiollr" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> قناة تيليجرام للكتاب</a>
+                </div>
+            </div>
+        </footer>
+    </div> 
+
+    <script src="js/main.js" defer></script> 
+</body>
+</html>
